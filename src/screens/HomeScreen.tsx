@@ -1,20 +1,16 @@
+import { Box, Button, Text } from "native-base";
 import React from "react";
-import { View, Text, Button } from "react-native";
-import { StatusBar } from "expo-status-bar";
+
 type Props = {
   navigation: any;
 };
 
 const HomeScreen = ({ navigation }: Props) => {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <StatusBar />
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate("About")}
-      />
-    </View>
+    <Box alignItems="center">
+      <Text fontSize="sm">sm</Text>
+      <Button onPress={() => console.log("hello world")}>Click Me</Button>
+    </Box>
   );
 };
 
