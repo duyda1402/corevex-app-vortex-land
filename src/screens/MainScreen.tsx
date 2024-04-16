@@ -1,14 +1,20 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Image } from "native-base";
 import React from "react";
-import HomeScreen from "./HomeScreen";
-import { Center, Image } from "native-base";
-import { Text, View } from "react-native";
+
 import { TabNameEnum } from "@/commons/enum/screens";
+import {
+  IconAdventure,
+  IconChat,
+  IconDiscover,
+  IconMe,
+  IconRoom,
+} from "@/commons/icons";
 import AdventureScreen from "./AdventureScreen";
-import RoomScreen from "./RoomScreen";
 import ChatScreen from "./ChatScreen";
 import DiscoverScreen from "./DiscoverScreen";
 import MeScreen from "./MeScreen";
+import RoomScreen from "./RoomScreen";
 
 type Props = {};
 
@@ -21,31 +27,31 @@ const menuApp = [
   {
     name: TabNameEnum.BoardGameTab,
     label: "Adventure",
-    sourceIcon: require("../../assets/icon/gamepad.png"),
+    sourceIcon: IconAdventure,
     component: AdventureScreen,
   },
   {
     name: TabNameEnum.RoomTab,
     label: "Room",
-    sourceIcon: require("../../assets/icon/couch.png"),
+    sourceIcon: IconRoom,
     component: RoomScreen,
   },
   {
     name: TabNameEnum.ChatTab,
     label: "Chat",
-    sourceIcon: require("../../assets/icon/comments.png"),
+    sourceIcon: IconChat,
     component: ChatScreen,
   },
   {
     name: TabNameEnum.Discover,
     label: "Discover",
-    sourceIcon: require("../../assets/icon/discover.png"),
+    sourceIcon: IconDiscover,
     component: DiscoverScreen,
   },
   {
     name: TabNameEnum.MeTab,
     label: "Me",
-    sourceIcon: require("../../assets/icon/icon-me.png"),
+    sourceIcon: IconMe,
     component: MeScreen,
   },
 ];

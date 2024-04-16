@@ -1,13 +1,15 @@
-import { ScrollView, Text } from "native-base";
+import ViewMain from "@/components/ViewMain";
+import { Text } from "native-base";
 import React from "react";
+import { Platform, StyleSheet } from "react-native";
 
 type Props = {};
 
 function DiscoverScreen({}: Props) {
   return (
-    <ScrollView>
+    <ViewMain>
       <Text>Discover Screen</Text>
-    </ScrollView>
+    </ViewMain>
   );
 }
 

@@ -1,13 +1,14 @@
-import { ScrollView, Text } from "native-base";
+import ViewMain from "@/components/ViewMain";
+import { Text } from "native-base";
 import React from "react";
 
 type Props = {};
 
 function AdventureScreen({}: Props) {
   return (
-    <ScrollView>
+    <ViewMain>
       <Text>Adventure Screen</Text>
-    </ScrollView>
+    </ViewMain>
   );
 }
 
