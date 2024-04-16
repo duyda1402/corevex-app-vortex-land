@@ -57,17 +57,17 @@ const LoginScreen = ({ navigation }: Props) => {
           </Button>
           <HStack space={3} justifyContent="center">
             <ButtonAnotherLogin
-              source={require("../../assets/icon/apple.png")}
+              source={require("../../assets/icons/apple.png")}
               onPress={() => console.log("Login Apple")}
               bg="gray.100"
             />
             <ButtonAnotherLogin
-              source={require("../../assets/icon/tiktok.png")}
+              source={require("../../assets/icons/tiktok.png")}
               onPress={() => console.log("Login Tiktok")}
               bg="gray.100"
             />
             <ButtonAnotherLogin
-              source={require("../../assets/icon/mobile.png")}
+              source={require("../../assets/icons/mobile.png")}
               onPress={() => console.log("Login Mobile")}
               bg="gray.100"
             />

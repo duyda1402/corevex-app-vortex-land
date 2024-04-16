@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { LogBox } from "react-native";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
-import MainScreen from "@/screens/MainScreen";
+import "react-native-gesture-handler";
 
 export default function App() {
   useEffect(() => {

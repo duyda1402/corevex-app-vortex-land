@@ -9,7 +9,7 @@ import {
   IconDiscover,
   IconMe,
   IconRoom,
-} from "@/commons/icons";
+} from "@/commons/assets";
 import AdventureScreen from "./AdventureScreen";
 import ChatScreen from "./ChatScreen";
 import DiscoverScreen from "./DiscoverScreen";
