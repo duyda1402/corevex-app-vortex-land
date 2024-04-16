@@ -3,6 +3,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { NativeBaseProvider, Box } from "native-base";
 import { useEffect } from "react";
 import { LogBox } from "react-native";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
+import MainScreen from "@/screens/MainScreen";
 
 export default function App() {
   useEffect(() => {
@@ -11,20 +14,19 @@ export default function App() {
     ]);
   }, []);
 
-  return (
-    <NativeBaseProvider>
-      <NavigationContainer>
-        <RouterApp />
-      </NavigationContainer>
-    </NativeBaseProvider>
-  );
-}
+  const [fontsLoaded] = useFonts({
+    Platypi: require("./assets/fonts/platypi/Platypi-VariableFont_wght.ttf"),
+  });
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-// });
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <NativeBaseProvider>
+        <NavigationContainer>
+          <RouterApp />
+        </NavigationContainer>
+      </NativeBaseProvider>
+    );
+  }
+}

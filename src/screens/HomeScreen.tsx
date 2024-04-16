@@ -1,4 +1,5 @@
-import { Box, Button, Text } from "native-base";
+import { ScreenNameEnum } from "@/commons/enum/screens";
+import { Button, Center, Container, Heading, Text } from "native-base";
 import React from "react";
 
 type Props = {
@@ -7,10 +8,24 @@ type Props = {
 
 const HomeScreen = ({ navigation }: Props) => {
   return (
-    <Box alignItems="center">
-      <Text fontSize="sm">sm</Text>
-      <Button onPress={() => console.log("hello world")}>Click Me</Button>
-    </Box>
+    <Center>
+      <Container>
+        <Heading>
+          A component library for the
+          <Text color="emerald.500"> React Ecosystem</Text>
+        </Heading>
+        <Text mt="3" fontWeight="medium">
+          NativeBase is a simple, modular and accessible component library that
+          gives you building blocks to build you React applications.
+        </Text>
+        <Button
+          variant="outline"
+          onPress={() => navigation.navigate(ScreenNameEnum.LoginScreen)}
+        >
+          Logout
+        </Button>
+      </Container>
+    </Center>
   );
 };
 
