@@ -13,3 +13,17 @@ export const IconRoom = require("../../../assets/icons/couch.png");
 export const IconChat = require("../../../assets/icons/comments.png");
 export const IconDiscover = require("../../../assets/icons/discover.png");
 export const IconMe = require("../../../assets/icons/me.png");
+
+//Icon rank
+
+export const IconRank1 = require("../../../assets/ranks/rank-F1.png");
+export const IconRank2 = require("../../../assets/ranks/rank-F2.png");
+export const IconRank3 = require("../../../assets/ranks/rank-D1.png");
+export const IconRank4 = require("../../../assets/ranks/rank-D2.png");
+export const IconRank5 = require("../../../assets/ranks/rank-C1.png");
+export const IconRank6 = require("../../../assets/ranks/rank-C2.png");
+export const IconRank7 = require("../../../assets/ranks/rank-B1.png");
+export const IconRank8 = require("../../../assets/ranks/rank-B2.png");
+export const IconRank9 = require("../../../assets/ranks/rank-A1.png");
+export const IconRank10 = require("../../../assets/ranks/rank-A2.png");
+export const IconRank11 = require("../../../assets/ranks/rank-S1.png");
