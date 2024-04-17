@@ -11,7 +11,7 @@ import {
   IconRoom,
 } from "@/commons/assets";
 import AdventureScreen from "./AdventureScreen";
-import ChatScreen from "./ChatScreen";
+import ChannelListScreen from "./chat-tabs/ChannelListScreen";
 import DiscoverScreen from "./DiscoverScreen";
 import MeScreen from "./MeScreen";
 import RoomScreen from "./RoomScreen";
@@ -37,10 +37,10 @@ const menuApp = [
     component: RoomScreen,
   },
   {
-    name: TabNameEnum.ChatTab,
+    name: TabNameEnum.ChannelTab,
     label: "Chat",
     sourceIcon: IconChat,
-    component: ChatScreen,
+    component: ChannelListScreen,
   },
   {
     name: TabNameEnum.Discover,

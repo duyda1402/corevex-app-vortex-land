@@ -1,4 +1,5 @@
 import { ScreenNameEnum } from "@/commons/enum/screens";
+import ChatScreen from "@/screens/chat-tabs/ChatScreen";
 import HomeScreen from "@/screens/HomeScreen";
 import LoginScreen from "@/screens/LoginScreen";
 import MainScreen from "@/screens/MainScreen";
@@ -18,6 +19,11 @@ function RouterApp() {
         name={ScreenNameEnum.LoginScreen}
         options={{ headerShown: false }}
         component={LoginScreen}
+      />
+      <Stack.Screen
+        name={ScreenNameEnum.ChatScreen}
+        options={{ headerShown: false }}
+        component={ChatScreen}
       />
     </Stack.Navigator>
   );

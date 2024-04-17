@@ -1,6 +1,6 @@
 import {
   avatarMockup,
-  IconAngleRight,
+  iconAngleRight,
   IconRank10,
   IconRank11,
   IconRank9,
@@ -69,7 +69,7 @@ function UserInfo({}: Props) {
       <Image
         w="3"
         h="3"
-        source={IconAngleRight}
+        source={iconAngleRight}
         alt="btn"
         style={{ tintColor: "gray" }}
       />

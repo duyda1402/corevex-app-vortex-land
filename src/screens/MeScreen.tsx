@@ -1,6 +1,6 @@
 import {
-  IconAngleLeft,
-  IconMenu,
+  iconAngleLeft,
+  iconMenu,
   imageDefault,
   imageMockup,
 } from "@/commons/assets";
@@ -11,10 +11,9 @@ import ParallaxScroll from "@monterosa/react-native-parallax-scroll";
 import { StatusBar, StyleSheet, View } from "react-native";
 import UserInfo from "@/components/users/UserInfo";
 import UserController from "@/components/users/UserController";
+import { BASE_APP_COLOR } from "@/commons";
 
 type Props = {};
-
-const COLOR_BASE = "#90e0ef";
 
 function MeScreen({}: Props) {
   function goBack() {
@@ -22,7 +21,7 @@ function MeScreen({}: Props) {
   }
 
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={{ backgroundColor: BASE_APP_COLOR }}>
       <ParallaxScroll
         // renderHeader={({ animatedValue }) => <Image source={imageDefault} />}
         headerHeight={50}

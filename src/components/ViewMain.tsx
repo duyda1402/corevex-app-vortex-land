@@ -1,5 +1,6 @@
+import { BASE_APP_COLOR } from "@/commons";
 import React from "react";
-import { View } from "react-native";
+import { DimensionValue, View } from "react-native";
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
@@ -7,15 +8,23 @@ import {
 
 type Props = {
   children: React.ReactNode;
+  mah?: DimensionValue;
+  isInsetsBottom?: boolean;
 };
 
-const ViewMain = ({ children }: Props) => {
+const ViewMain = ({ children, mah, isInsetsBottom = true }: Props) => {
   const insets = useSafeAreaInsets();
-  console.log("insets", insets);
   return (
     <SafeAreaProvider>
       <View
-        style={{ paddingTop: insets.top, flex: 1, justifyContent: "center" }}
+        style={{
+          maxHeight: mah,
+          paddingBottom: isInsetsBottom ? insets.bottom : undefined,
+          backgroundColor: BASE_APP_COLOR,
+          paddingTop: insets.top,
+          flex: 1,
+          justifyContent: "center",
+        }}
       >
         {children}
       </View>

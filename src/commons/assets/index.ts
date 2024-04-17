@@ -1,7 +1,11 @@
 //Icon system
-export const IconAngleLeft = require("../../../assets/icons/angle-left.png");
-export const IconAngleRight = require("../../../assets/icons/angle-right.png");
-export const IconMenu = require("../../../assets/icons/menu-burger.png");
+export const iconAngleLeft = require("../../../assets/icons/angle-left.png");
+export const iconAngleRight = require("../../../assets/icons/angle-right.png");
+export const iconMenu = require("../../../assets/icons/menu-burger.png");
+export const iconMenuDots = require("../../../assets/icons/menu-dots-vertical.png");
+export const iconMicrophone = require("../../../assets/icons/microphone.png");
+export const iconGiftColor = require("../../../assets/icons/gift.png");
+export const iconApps = require("../../../assets/icons/apps.png");
 
 //Image Mockup
 export const imageDefault = require("../../../assets/icons/image-default.jpg");
