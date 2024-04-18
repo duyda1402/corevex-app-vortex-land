@@ -4,25 +4,34 @@ import {
   iconGiftColor,
   iconMenuDots,
   iconMicrophone,
+  iconX,
 } from "@/commons/assets";
-import { channelsMockup, userMockupDodyy } from "@/commons/mockups/channels";
+import { userMockupDodyy } from "@/commons/mockups/channels";
+import GiftsSheet from "@/components/gift/GiftsSheet";
 import WrapIcon from "@/components/icons/WrapIcon";
 import ViewMain from "@/components/ViewMain";
 import { getInfoChannel } from "@/untils";
 import { useNavigation } from "@react-navigation/native";
 import {
-  Box,
+  Actionsheet,
   Center,
-  Heading,
   HStack,
   Input,
   KeyboardAvoidingView,
   ScrollView,
+  Stack,
   Text,
-  VStack,
+  useDisclose,
+  useTheme,
 } from "native-base";
-import React, { useEffect, useState } from "react";
-import { Animated, Dimensions, Keyboard, Platform } from "react-native";
+import React, { useState } from "react";
+import {
+  Animated,
+  Keyboard,
+  Platform,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 
 type Props = {
   navigation: any;
@@ -33,100 +42,161 @@ type Props = {
 const curUser = userMockupDodyy;
 
 function ChatScreen({ route }: Props) {
-  const windowHight = Dimensions.get("window").height;
+  const { colors } = useTheme();
+  const {
+    isOpen: isAppMore,
+    onOpen: onOpenAppMore,
+    onClose: onCloseAppMore,
+  } = useDisclose();
+  const {
+    isOpen: isOpenGift,
+    onOpen: onOpenGift,
+    onClose: onCloseGift,
+  } = useDisclose();
   const navigation = useNavigation();
+
+  // Info Channel
   const curChannel = route.params?.channel;
   const infoChannel = getInfoChannel(curChannel, curUser.user_id);
   const messages = [];
-  const [paddingBottom] = useState(new Animated.Value(40));
 
-  useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      "keyboardDidShow",
-      () =>
-        Animated.timing(paddingBottom, {
-          toValue: 10,
-          duration: 200,
-          useNativeDriver: false,
-        }).start()
-    );
-    const keyboardDidHideListener = Keyboard.addListener(
-      "keyboardDidHide",
-      () =>
-        Animated.timing(paddingBottom, {
-          toValue: 32,
-          duration: 200,
-          useNativeDriver: false,
-        }).start()
-    );
+  const [heightMenu] = useState(new Animated.Value(0));
 
-    return () => {
-      keyboardDidShowListener.remove();
-      keyboardDidHideListener.remove();
-    };
-  }, []);
+  const toggleAppMoreMenu = () => {
+    if (!isAppMore) {
+      Animated.timing(heightMenu, {
+        toValue: 220,
+        duration: 200,
+        useNativeDriver: false,
+      }).start();
+      onOpenAppMore();
+      Keyboard.dismiss();
+    } else {
+      focusCloseAppMore();
+    }
+  };
+
+  const focusCloseAppMore = () => {
+    onCloseAppMore();
+    Animated.timing(heightMenu, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  const toggleGiftMenu = () => {
+    Keyboard.dismiss();
+    onCloseAppMore();
+    focusCloseAppMore();
+    return onOpenGift();
+  };
 
   return (
-    <KeyboardAvoidingView
-      h={{
-        base: windowHight,
-        lg: "auto",
-      }}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-    >
-      <ViewMain isInsetsBottom={false}>
-        <HStack justifyContent="space-between" alignItems="center" p="4">
-          <WrapIcon
-            size="4"
-            source={iconAngleLeft}
-            alt="btn-back"
-            onPress={() => navigation.goBack()}
-          />
-          <Text fontSize="lg" fontWeight="semibold">
-            {infoChannel.name}
-          </Text>
-          <WrapIcon size="4" source={iconMenuDots} alt="btn-menu" />
-        </HStack>
-        <ScrollView bg="gray.100">
-          {!messages.length && (
-            <Center h="60">
-              <Text fontSize="xs" color="gray.400">
-                No Messages
-              </Text>
-            </Center>
-          )}
-        </ScrollView>
-        <Animated.View
-          style={{
-            paddingRight: 14,
-            paddingLeft: 14,
-            paddingTop: 10,
-            paddingBottom,
-          }}
-        >
+    <ViewMain isInsetsBottom={true}>
+      <HStack justifyContent="space-between" alignItems="center" p="4">
+        <WrapIcon
+          size="4"
+          source={iconAngleLeft}
+          alt="btn-back"
+          onPress={() => navigation.goBack()}
+        />
+        <Text fontSize="lg" fontWeight="semibold">
+          {infoChannel.name}
+        </Text>
+        <WrapIcon size="4" source={iconMenuDots} alt="btn-menu" />
+      </HStack>
+      <ScrollView bg="gray.100">
+        {!messages.length && (
+          <Center h="60">
+            <Text fontSize="xs" color="gray.400">
+              No Messages
+            </Text>
+          </Center>
+        )}
+      </ScrollView>
+      {isAppMore && (
+        <TouchableOpacity
+          style={styles.overlay}
+          onPress={focusCloseAppMore}
+          activeOpacity={1}
+        />
+      )}
+      <KeyboardAvoidingView
+        keyboardVerticalOffset={10}
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+      >
+        <Stack paddingX="4" paddingTop="3">
           <HStack
             space="3"
             alignItems="center"
             flexGrow={1}
             justifyContent="space-between"
           >
-            <WrapIcon size="5" source={iconMicrophone} alt="btn-mic" />
+            <WrapIcon
+              size="5"
+              style={{ tintColor: colors.gray[600] }}
+              source={iconMicrophone}
+              alt="btn-mic"
+            />
+            {/* Input chat */}
             <Input
               isFocused={false}
               rounded={99}
               size="lg"
               maxW="2/3"
               bg="gray.100"
+              onFocus={focusCloseAppMore}
               focusOutlineColor="gray.100"
               variant="filled"
             />
-            <WrapIcon size="6" source={iconGiftColor} alt="btn-gift" />
-            <WrapIcon size="5" source={iconApps} alt="btn-app-more" />
+            <WrapIcon
+              size="6"
+              source={iconGiftColor}
+              onPress={toggleGiftMenu}
+              alt="btn-gift"
+            />
+            {isAppMore ? (
+              <WrapIcon
+                size="5"
+                source={iconX}
+                alt="btn-x-app-more"
+                style={{ tintColor: colors.gray[600] }}
+                onPress={toggleAppMoreMenu}
+              />
+            ) : (
+              <WrapIcon
+                size="5"
+                source={iconApps}
+                alt="btn-app-more"
+                style={{ tintColor: colors.gray[600] }}
+                onPress={toggleAppMoreMenu}
+              />
+            )}
           </HStack>
-        </Animated.View>
-      </ViewMain>
-    </KeyboardAvoidingView>
+          {/* Screen Sheet Gift */}
+          <Actionsheet isOpen={isOpenGift} onClose={onCloseGift}>
+            <GiftsSheet />
+          </Actionsheet>
+          <Animated.View style={{ height: heightMenu }}>
+            {/* Screen App More*/}
+            {isAppMore && (
+              <ScrollView>
+                <Text>More App</Text>
+              </ScrollView>
+            )}
+          </Animated.View>
+        </Stack>
+      </KeyboardAvoidingView>
+    </ViewMain>
   );
 }
 
 export default ChatScreen;
+
+const styles = StyleSheet.create({
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0, 0, 0, 0.0)",
+  },
+});

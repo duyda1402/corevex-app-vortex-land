@@ -41,3 +41,14 @@ export const getInfoChannel = (channel: any, curUserId: string) => {
     imgCover: partner.profile_url,
   };
 };
+
+export function convertArrToArrays<T = any>(
+  arr: Array<T>,
+  size: number
+): Array<Array<T>> {
+  var newArray: Array<Array<T>> = [];
+  for (var i = 0; i < arr.length; i += size) {
+    newArray.push(arr.slice(i, i + size));
+  }
+  return newArray;
+}

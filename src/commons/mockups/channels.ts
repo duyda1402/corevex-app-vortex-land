@@ -8,9 +8,9 @@ export const userMockupDodyy = {
 
 export const userMockupB = {
   user_id: "christ",
-  nickname: "Christ 🌿",
+  nickname: "Phan Ngọc Loan 🌿",
   profile_url:
-    "https://i.pinimg.com/564x/a3/8b/1e/a38b1e286f16e853e0a5ad11bbc0f06d.jpg",
+    "https://i.pinimg.com/564x/f1/32/15/f13215c0852658c796806ab0f7e16b02.jpg",
   require_auth_for_profile_image: false,
 };
 

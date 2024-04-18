@@ -5,7 +5,7 @@ import {
   IconRank11,
   IconRank9,
 } from "@/commons/assets";
-import { Avatar, Box, Flex, HStack, Image, Stack, Text } from "native-base";
+import { Avatar, HStack, Image, Stack, Text } from "native-base";
 import React from "react";
 type Props = {};
 

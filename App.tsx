@@ -12,6 +12,7 @@ export default function App() {
     LogBox.ignoreLogs([
       "In React 18, SSRProvider is not necessary and is a noop. You can remove it from your app.",
       "expo-app-loading is deprecated in favor of expo-splash-screen",
+      "ViewPropTypes will be removed from React Native",
     ]);
   }, []);
 

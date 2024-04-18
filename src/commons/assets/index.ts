@@ -6,6 +6,10 @@ export const iconMenuDots = require("../../../assets/icons/menu-dots-vertical.pn
 export const iconMicrophone = require("../../../assets/icons/microphone.png");
 export const iconGiftColor = require("../../../assets/icons/gift.png");
 export const iconApps = require("../../../assets/icons/apps.png");
+export const iconX = require("../../../assets/icons/cross.png");
+
+//Image Base
+export const iconDiamondBase = require("../../../assets/base/diamond.png");
 
 //Image Mockup
 export const imageDefault = require("../../../assets/icons/image-default.jpg");
