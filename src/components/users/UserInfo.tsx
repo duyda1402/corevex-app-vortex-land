@@ -1,25 +1,17 @@
-import {
-  avatarMockup,
-  iconAngleRight,
-  IconRank10,
-  IconRank11,
-  IconRank9,
-} from "@/commons/assets";
-import { Avatar, HStack, Image, Stack, Text } from "native-base";
+import { avatarMockup, iconAngleRight, IconRank11 } from "@/commons/assets";
+import { Avatar, HStack, Image, Stack, Text, useTheme } from "native-base";
 import React from "react";
-type Props = {};
+import FeatherIcon from "react-native-vector-icons/Feather";
 
-const user = {
-  name: "Mì ❄️",
-  id: "dodyy14",
-  rank: 99,
-  gender: "male",
-  address: "Ho Chi Minh City,Vietnam",
+type Props = {
+  user: any;
 };
 
-function UserInfo({}: Props) {
+function UserInfo({ user }: Props) {
+  const { colors } = useTheme();
   return (
     <HStack
+      style={{ borderTopLeftRadius: 24, borderTopRightRadius: 24 }}
       py="4"
       px="4"
       bg="blueGray.100"
@@ -66,13 +58,7 @@ function UserInfo({}: Props) {
           </HStack>
         </Stack>
       </HStack>
-      <Image
-        w="3"
-        h="3"
-        source={iconAngleRight}
-        alt="btn"
-        style={{ tintColor: "gray" }}
-      />
+      <FeatherIcon name="chevron-right" size={20} color={colors.gray[500]} />
     </HStack>
   );
 }

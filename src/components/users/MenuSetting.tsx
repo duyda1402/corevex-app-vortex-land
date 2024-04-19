@@ -7,10 +7,11 @@ import {
   iconRatings,
   iconSetting,
 } from "@/commons/assets";
-import { Box, FlatList, HStack, Text } from "native-base";
+import { Box, FlatList, HStack, Text, useTheme } from "native-base";
 import React from "react";
 import WrapIcon from "../wrapper/WrapIcon";
-import { TouchableHighlight, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
+import FeatherIcon from "react-native-vector-icons/Feather";
 type Props = {};
 
 const menuMockup = [
@@ -47,6 +48,7 @@ const menuMockup = [
 ];
 
 function MenuSetting({}: Props) {
+  const { colors } = useTheme();
   return (
     <Box mt="4">
       <FlatList
@@ -66,7 +68,11 @@ function MenuSetting({}: Props) {
                 </Text>
               </HStack>
 
-              <WrapIcon size="3" source={iconAngleRight} alt="btn-right" />
+              <FeatherIcon
+                name="chevron-right"
+                size={20}
+                color={colors.gray[500]}
+              />
             </HStack>
           </TouchableOpacity>
         )}

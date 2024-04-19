@@ -1,15 +1,8 @@
-import {
-  iconAngleLeft,
-  iconApps,
-  iconGiftColor,
-  iconMenuDots,
-  iconMicrophone,
-  iconX,
-} from "@/commons/assets";
+import { iconGiftColor } from "@/commons/assets";
 import { userMockupDodyy } from "@/commons/mockups/channels";
 import GiftsSheet from "@/components/gift/GiftsSheet";
-import WrapIcon from "@/components/wrapper/WrapIcon";
 import ViewMain from "@/components/ViewMain";
+import WrapIcon from "@/components/wrapper/WrapIcon";
 import { getInfoChannel } from "@/untils";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -32,6 +25,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import FeatherIcon from "react-native-vector-icons/Feather";
 import MessageList from "./MessageList";
 
 type Props = {
@@ -96,16 +90,21 @@ function ChatScreen({ route }: Props) {
   return (
     <ViewMain isInsetsBottom={true}>
       <HStack justifyContent="space-between" alignItems="center" py="3" px="5">
-        <WrapIcon
-          size="4"
-          source={iconAngleLeft}
-          alt="btn-back"
+        <FeatherIcon
+          name="chevron-left"
+          size={24}
+          color={colors.gray[600]}
           onPress={() => navigation.goBack()}
         />
         <Text fontSize="md" fontWeight="semibold">
           {infoChannel.name}
         </Text>
-        <WrapIcon size="4" source={iconMenuDots} alt="btn-menu" />
+        <FeatherIcon
+          name="more-vertical"
+          size={24}
+          color={colors.gray[600]}
+          // onPress={() => navigation.goBack()}
+        />
       </HStack>
       <ScrollView bg="gray.100">
         {!messages.length ? (
@@ -136,12 +135,7 @@ function ChatScreen({ route }: Props) {
             flexGrow={1}
             justifyContent="space-between"
           >
-            <WrapIcon
-              size="5"
-              style={{ tintColor: colors.gray[600] }}
-              source={iconMicrophone}
-              alt="btn-mic"
-            />
+            <FeatherIcon name="mic" size={24} color={colors.gray[600]} />
             {/* Input chat */}
             <Input
               isFocused={false}
@@ -160,21 +154,26 @@ function ChatScreen({ route }: Props) {
               alt="btn-gift"
             />
             {isAppMore ? (
-              <WrapIcon
-                size="5"
-                source={iconX}
-                alt="btn-x-app-more"
-                style={{ tintColor: colors.gray[600] }}
-                onPress={toggleAppMoreMenu}
+              <FeatherIcon
+                name="x"
+                size={24}
+                color={colors.gray[600]}
+                onPress={focusCloseAppMore}
               />
             ) : (
-              <WrapIcon
-                size="5"
-                source={iconApps}
-                alt="btn-app-more"
-                style={{ tintColor: colors.gray[600] }}
+              <FeatherIcon
+                name="menu"
+                size={24}
+                color={colors.gray[600]}
                 onPress={toggleAppMoreMenu}
               />
+              // <WrapIcon
+              //   size="5"
+              //   source={iconApps}
+              //   alt="btn-app-more"
+              //   style={{ tintColor: colors.gray[600] }}
+              //   onPress={toggleAppMoreMenu}
+              // />
             )}
           </HStack>
           {/* Screen Sheet Gift */}

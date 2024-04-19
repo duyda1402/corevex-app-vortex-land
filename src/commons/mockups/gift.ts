@@ -85,6 +85,18 @@ export const giftsMockup = [
   },
   {
     categoryId: null,
+    id: "xJMjz2XTZD",
+    name: "Moon Craft",
+    description: "",
+    cover_url:
+      "https://firebasestorage.googleapis.com/v0/b/net-app-1b121.appspot.com/o/gift%2Fmoon_creft_a.png?alt=media",
+    price: 999,
+    voice: null,
+    isVoice: false,
+    tagId: "event",
+  },
+  {
+    categoryId: null,
     id: "lYKbVQLGKo",
     name: "Rose",
     description: "",
@@ -107,6 +119,7 @@ export const giftsMockup = [
     isVoice: false,
     tagId: "love",
   },
+
   {
     categoryId: null,
     id: "by2gx455Ex",
