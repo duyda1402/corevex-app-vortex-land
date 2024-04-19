@@ -32,6 +32,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import MessageList from "./MessageList";
 
 type Props = {
   navigation: any;
@@ -58,7 +59,7 @@ function ChatScreen({ route }: Props) {
   // Info Channel
   const curChannel = route.params?.channel;
   const infoChannel = getInfoChannel(curChannel, curUser.user_id);
-  const messages = [];
+  const messages = [curChannel?.last_message];
 
   const [heightMenu] = useState(new Animated.Value(0));
   // console.log("curChannel 5555555555", curChannel);
@@ -94,25 +95,27 @@ function ChatScreen({ route }: Props) {
 
   return (
     <ViewMain isInsetsBottom={true}>
-      <HStack justifyContent="space-between" alignItems="center" p="4">
+      <HStack justifyContent="space-between" alignItems="center" py="3" px="5">
         <WrapIcon
           size="4"
           source={iconAngleLeft}
           alt="btn-back"
           onPress={() => navigation.goBack()}
         />
-        <Text fontSize="lg" fontWeight="semibold">
+        <Text fontSize="md" fontWeight="semibold">
           {infoChannel.name}
         </Text>
         <WrapIcon size="4" source={iconMenuDots} alt="btn-menu" />
       </HStack>
       <ScrollView bg="gray.100">
-        {!messages.length && (
+        {!messages.length ? (
           <Center h="60">
             <Text fontSize="xs" color="gray.400">
               No Messages
             </Text>
           </Center>
+        ) : (
+          <MessageList messages={messages} />
         )}
       </ScrollView>
       {isAppMore && (

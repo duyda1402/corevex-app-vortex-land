@@ -105,7 +105,7 @@ export const channelsMockup = [
     last_message: {
       type: "MESG",
       message_id: 2178333742,
-      message: "Hi Momon!\nHow about this project?",
+      message: "Hi Mì ❄️!\nGlad to know you!",
       data: "",
       custom_type: "",
       file: {},
