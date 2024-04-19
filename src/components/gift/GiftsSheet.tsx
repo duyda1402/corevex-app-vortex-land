@@ -20,15 +20,17 @@ import {
 } from "react-native-tab-view";
 import GiftRouters from "./GiftRouters";
 
-type Props = {};
+type Props = {
+  usersTo: Array<any>;
+};
 
-const user = userMockupB;
 const giftCategories = giftCategoriesMockup;
-function GiftsSheet({}: Props) {
+
+function GiftsSheet({ usersTo }: Props) {
   const layout = useWindowDimensions();
   const { colors } = useTheme();
   const [index, setIndex] = React.useState(1);
-
+  const [receiver, setReceiver] = React.useState(usersTo?.[0] || null);
   const [routes] = React.useState(() => {
     const curRouter = [
       { key: "bag", title: "Bag" },
@@ -44,7 +46,7 @@ function GiftsSheet({}: Props) {
   const COLOR_BASE_BG = colors.gray[100];
 
   return (
-    <Actionsheet.Content bg={COLOR_BASE_BG} h={414}>
+    <Actionsheet.Content bg={COLOR_BASE_BG} h={384}>
       <VStack>
         <TabView
           navigationState={{ index, routes }}
@@ -59,23 +61,24 @@ function GiftsSheet({}: Props) {
           })}
           onIndexChange={setIndex}
           sceneContainerStyle={{ height: "auto" }}
-          // lazy
           pagerStyle={{
             width: layout.width,
           }}
         />
-        <HStack alignItems="center" justifyContent="space-between" px="3">
-          <HStack space={2} alignItems="center">
-            <Text color="gray.700" fontWeight="semibold">
-              To
-            </Text>
-            <Avatar size="xs" source={{ uri: user.profile_url }} />
-            <Text color="gray.700">{user.nickname}</Text>
+        {receiver && (
+          <HStack alignItems="center" justifyContent="space-between" px="3">
+            <HStack space={2} alignItems="center">
+              <Text color="gray.700" fontWeight="semibold">
+                To
+              </Text>
+              <Avatar size="xs" source={{ uri: receiver?.profile_url }} />
+              <Text color="gray.700">{receiver?.nickname}</Text>
+            </HStack>
+            <Button size="sm" rounded={99} colorScheme="rose">
+              Send
+            </Button>
           </HStack>
-          <Button size="sm" rounded={99} colorScheme="rose">
-            Send
-          </Button>
-        </HStack>
+        )}
       </VStack>
     </Actionsheet.Content>
   );
@@ -84,7 +87,6 @@ function GiftsSheet({}: Props) {
 export default GiftsSheet;
 
 const TabBarMainCustom = (props: any) => {
-  const { colors } = useTheme();
   return (
     <TabBar
       {...props}

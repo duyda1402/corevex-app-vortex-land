@@ -2,12 +2,13 @@ import { iconDiamondBase } from "@/commons/assets";
 import { giftsMockup, tagsGiftMockup } from "@/commons/mockups/gift";
 import { convertArrToArrays } from "@/untils";
 import { isArray } from "lodash";
-import { Box, HStack, Image, Text, useTheme, VStack } from "native-base";
-import React, { useEffect, useState } from "react";
+import { Box, HStack, Text, useTheme, View, VStack } from "native-base";
+import React, { useMemo, useState } from "react";
 import { SafeAreaView, useWindowDimensions } from "react-native";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import { SimpleGrid } from "react-native-super-grid";
-import WrapIcon from "../icons/WrapIcon";
+import WrapFastImg from "../wrapper/WrapFastImg";
+import WrapIcon from "../wrapper/WrapIcon";
 
 type Props = {
   typeRouter: "bag" | "popular" | string;
@@ -41,13 +42,10 @@ const RenderItem = ({ item }: any) => (
         </Text>
       </Box>
     )}
-
-    <Image
+    <WrapFastImg
       resizeMode="contain"
-      alt={item?.id}
-      source={{ uri: item?.cover_url }}
-      w="12"
-      h="12"
+      uri={item?.cover_url}
+      style={{ width: 48, height: 48 }}
     />
     <Text fontSize="xs" isTruncated>
       {item.name}
@@ -61,28 +59,31 @@ const RenderItem = ({ item }: any) => (
   </VStack>
 );
 
+const fetchData = (typeRouter: string) => {
+  let gifts: Array<any> = [];
+  switch (typeRouter) {
+    case "bag":
+      break;
+    case "popular":
+      gifts = giftAllMockup;
+      break;
+    default:
+      gifts = giftAllMockup.filter((i: any) => i.categoryId === typeRouter);
+      break;
+  }
+  return convertArrToArrays(gifts, NUM_COLUMNS * NUM_ROWS);
+};
+
 function GiftRouters({ typeRouter }: Props) {
   const layout = useWindowDimensions();
   const [activeSlide, setActiveSlide] = useState<number>(0);
   const { colors } = useTheme();
-  const [dataCarousel, setDataCarousel] = useState<Array<any>>([]);
+  const [dataCarousel, setDataCarousel] = useState<Array<any>>(
+    fetchData(typeRouter) || []
+  );
 
-  useEffect(() => {
-    const fetchData = () => {
-      let gifts: Array<any> = [];
-      switch (typeRouter) {
-        case "bag":
-          break;
-        case "popular":
-          gifts = giftAllMockup;
-          break;
-        default:
-          gifts = giftAllMockup.filter((i: any) => i.categoryId === typeRouter);
-          break;
-      }
-      setDataCarousel(convertArrToArrays(gifts, NUM_COLUMNS * NUM_ROWS));
-    };
-    fetchData();
+  useMemo(() => {
+    setDataCarousel(fetchData(typeRouter));
   }, []);
 
   return (
@@ -92,6 +93,8 @@ function GiftRouters({ typeRouter }: Props) {
         sliderWidth={layout.width}
         itemWidth={layout.width}
         onSnapToItem={(index) => setActiveSlide(index)}
+        useScrollView={true}
+        inactiveSlideShift={0}
         renderItem={({ item }: any) => (
           <Box pt="4">
             {isArray(item) && (
@@ -105,26 +108,25 @@ function GiftRouters({ typeRouter }: Props) {
           </Box>
         )}
       />
-
-      <Pagination
-        dotsLength={dataCarousel.length}
-        activeDotIndex={activeSlide}
-        containerStyle={
-          {
-            // backgroundColor: "rgba(0, 0, 0, 0.2)",
-          }
-        }
-        dotContainerStyle={{
-          height: 2,
-        }}
-        dotStyle={{
-          width: 8,
-          height: 4,
-          backgroundColor: colors.gray[700],
-        }}
-        inactiveDotOpacity={0.6}
-        inactiveDotScale={0.8}
-      />
+      <View position="relative">
+        <Pagination
+          dotsLength={dataCarousel.length}
+          activeDotIndex={activeSlide}
+          containerStyle={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            top: -32,
+          }}
+          dotStyle={{
+            width: 10,
+            height: 3,
+            backgroundColor: colors.gray[700],
+          }}
+          inactiveDotOpacity={0.3}
+          inactiveDotScale={0.8}
+        />
+      </View>
     </SafeAreaView>
   );
 }

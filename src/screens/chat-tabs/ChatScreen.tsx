@@ -8,7 +8,7 @@ import {
 } from "@/commons/assets";
 import { userMockupDodyy } from "@/commons/mockups/channels";
 import GiftsSheet from "@/components/gift/GiftsSheet";
-import WrapIcon from "@/components/icons/WrapIcon";
+import WrapIcon from "@/components/wrapper/WrapIcon";
 import ViewMain from "@/components/ViewMain";
 import { getInfoChannel } from "@/untils";
 import { useNavigation } from "@react-navigation/native";
@@ -61,7 +61,7 @@ function ChatScreen({ route }: Props) {
   const messages = [];
 
   const [heightMenu] = useState(new Animated.Value(0));
-
+  // console.log("curChannel 5555555555", curChannel);
   const toggleAppMoreMenu = () => {
     if (!isAppMore) {
       Animated.timing(heightMenu, {
@@ -176,7 +176,13 @@ function ChatScreen({ route }: Props) {
           </HStack>
           {/* Screen Sheet Gift */}
           <Actionsheet isOpen={isOpenGift} onClose={onCloseGift}>
-            <GiftsSheet />
+            <GiftsSheet
+              usersTo={
+                curChannel.members?.filter(
+                  (m: any) => m?.user_id !== curUser.user_id
+                ) || []
+              }
+            />
           </Actionsheet>
           <Animated.View style={{ height: heightMenu }}>
             {/* Screen App More*/}
