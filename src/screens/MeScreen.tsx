@@ -12,6 +12,8 @@ import { StatusBar, StyleSheet, View } from "react-native";
 import UserInfo from "@/components/users/UserInfo";
 import UserController from "@/components/users/UserController";
 import { BASE_APP_COLOR } from "@/commons";
+import WrapFastImg from "@/components/wrapper/WrapFastImg";
+import MenuSetting from "@/components/users/MenuSetting";
 
 type Props = {};
 
@@ -27,11 +29,13 @@ function MeScreen({}: Props) {
         headerHeight={50}
         isHeaderFixed={true}
         parallaxHeight={280}
-        renderParallaxBackground={({ animatedValue }) => (
-          <Image
-            w="100%"
+        renderParallaxBackground={({}) => (
+          <WrapFastImg
             resizeMode="cover"
-            h="500"
+            style={{
+              width: "100%",
+              height: 480,
+            }}
             source={imageMockup}
             alt="hero"
           />
@@ -48,13 +52,10 @@ function MeScreen({}: Props) {
         >
           <UserInfo />
           <UserController />
+          <MenuSetting />
         </ScrollView>
       </ParallaxScroll>
-      <StatusBar
-        // barStyle="light-content"
-        // backgroundColor={COLOR_BASE}
-        translucent
-      />
+      <StatusBar translucent />
     </SafeAreaProvider>
   );
 }

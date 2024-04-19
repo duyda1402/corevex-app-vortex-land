@@ -1,4 +1,6 @@
+import { IconApple, iconLogo, IconMobile, IconTiktok } from "@/commons/assets";
 import { ScreenNameEnum } from "@/commons/enum/screens";
+import WrapIcon from "@/components/wrapper/WrapIcon";
 import {
   Avatar,
   Box,
@@ -34,11 +36,7 @@ const LoginScreen = ({ navigation }: Props) => {
       <Box>
         <Center>
           <VStack alignItems="center" space={2}>
-            <Image
-              source={require("../../assets/logo.png")}
-              alt="Alternate Text"
-              size="lg"
-            />
+            <WrapIcon source={iconLogo} alt="Logo" size="40" />
             <Heading>
               <Text fontFamily="Platypi" color="gray.700">
                 {APP_NAME}
@@ -57,17 +55,17 @@ const LoginScreen = ({ navigation }: Props) => {
           </Button>
           <HStack space={3} justifyContent="center">
             <ButtonAnotherLogin
-              source={require("../../assets/icons/apple.png")}
+              source={IconApple}
               onPress={() => console.log("Login Apple")}
               bg="gray.100"
             />
             <ButtonAnotherLogin
-              source={require("../../assets/icons/tiktok.png")}
+              source={IconTiktok}
               onPress={() => console.log("Login Tiktok")}
               bg="gray.100"
             />
             <ButtonAnotherLogin
-              source={require("../../assets/icons/mobile.png")}
+              source={IconMobile}
               onPress={() => console.log("Login Mobile")}
               bg="gray.100"
             />

@@ -15,6 +15,8 @@ import ChannelListScreen from "./chat-tabs/ChannelListScreen";
 import DiscoverScreen from "./DiscoverScreen";
 import MeScreen from "./MeScreen";
 import RoomScreen from "./RoomScreen";
+import WrapIcon from "@/components/wrapper/WrapIcon";
+import WrapFastImg from "@/components/wrapper/WrapFastImg";
 
 type Props = {};
 
@@ -79,12 +81,14 @@ const MainScreen = ({}: Props) => {
             tabBarActiveTintColor: COLOR_ACTIVE,
             tabBarInactiveTintColor: COLOR_INACTIVE,
             tabBarIcon: ({ focused }) => (
-              <Image
-                alt="Vortex Land"
+              <WrapFastImg
+                alt={menu.label}
                 source={menu.sourceIcon}
-                w="6"
-                h="6"
-                style={{ tintColor: focused ? COLOR_ACTIVE : COLOR_INACTIVE }}
+                style={{
+                  width: 24,
+                  height: 24,
+                  tintColor: focused ? COLOR_ACTIVE : COLOR_INACTIVE,
+                }}
               />
             ),
           }}
