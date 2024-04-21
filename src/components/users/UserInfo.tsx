@@ -22,7 +22,7 @@ function UserInfo({ user }: Props) {
         <Avatar source={avatarMockup} size="lg" />
         <Stack space={1}>
           <Text fontWeight="semibold" fontSize="lg">
-            {user.name}
+            {user.nickname}
           </Text>
           <HStack space={1}>
             <Text color="gray.700" fontSize="xs">
