@@ -10,6 +10,7 @@ export const iconX = require("../../../assets/icons/cross.png");
 
 //Image Base
 export const iconDiamondBase = require("../../../assets/base/diamond.png");
+export const iconCoinBase = require("../../../assets/base/coin.png");
 export const iconLogo = require("../../../assets/logo.png");
 
 //Image Mockup
@@ -49,3 +50,5 @@ export const iconBag = require("../../../assets/animateds/backpack.gif");
 export const iconContribute = require("../../../assets/animateds/feather-pen.gif");
 export const iconHeadphone = require("../../../assets/animateds/headset.gif");
 export const iconSetting = require("../../../assets/animateds/settings.gif");
+
+//Icon SVG

@@ -1,7 +1,6 @@
-import { avatarMockup, iconAngleRight, IconRank11 } from "@/commons/assets";
-import { Avatar, HStack, Image, Stack, Text, useTheme } from "native-base";
+import { avatarMockup } from "@/commons/assets";
+import { Avatar, HStack, Text, useTheme, VStack } from "native-base";
 import React from "react";
-import FeatherIcon from "react-native-vector-icons/Feather";
 
 type Props = {
   user: any;
@@ -14,35 +13,35 @@ function UserInfo({ user }: Props) {
       style={{ borderTopLeftRadius: 24, borderTopRightRadius: 24 }}
       py="4"
       px="4"
-      bg="blueGray.100"
+      bg="gray.100"
       alignItems="center"
-      justifyContent="space-between"
+      justifyContent="center"
     >
-      <HStack space={3} alignItems="center">
-        <Avatar source={avatarMockup} size="lg" />
-        <Stack space={1}>
-          <Text fontWeight="semibold" fontSize="lg">
-            {user.nickname}
-          </Text>
-          <HStack space={1}>
-            <Text color="gray.700" fontSize="xs">
-              ID: {user.id}
-            </Text>
-            <Text color="gray.300" fontSize="xs">
-              |
-            </Text>
-            <Text color="gray.700" fontSize="sm" fontWeight="bold">
-              {user.gender === "male" ? "♂" : "♀"}
-            </Text>
-            <Text color="gray.300" fontSize="xs">
-              |
-            </Text>
-            <Text color="gray.700" fontSize="xs">
-              {user.address}
-            </Text>
-          </HStack>
+      <VStack space={3} alignItems="center">
+        <Avatar source={{ uri: user.profile_url }} size="xl" mt="5" />
 
-          <HStack>
+        <Text fontWeight="semibold" fontSize="lg">
+          {user.nickname}
+        </Text>
+        <HStack space={1}>
+          <Text color="gray.700" fontSize="xs">
+            ID: {user.user_id}
+          </Text>
+          <Text color="gray.300" fontSize="xs">
+            |
+          </Text>
+          <Text color="gray.700" fontSize="sm" fontWeight="bold">
+            {user.gender === "male" ? "♂" : "♀"}
+          </Text>
+          <Text color="gray.300" fontSize="xs">
+            |
+          </Text>
+          <Text color="gray.700" fontSize="xs">
+            {user.address}
+          </Text>
+        </HStack>
+
+        {/* <HStack>
             <HStack
               space="0.5"
               bg="violet.700"
@@ -55,10 +54,9 @@ function UserInfo({ user }: Props) {
                 {user.rank}
               </Text>
             </HStack>
-          </HStack>
-        </Stack>
-      </HStack>
-      <FeatherIcon name="chevron-right" size={20} color={colors.gray[500]} />
+          </HStack> */}
+      </VStack>
+      {/* <FeatherIcon name="chevron-right" size={20} color={colors.gray[500]} /> */}
     </HStack>
   );
 }

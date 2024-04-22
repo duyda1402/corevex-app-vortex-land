@@ -1,4 +1,3 @@
-import { userMockupB } from "@/commons/mockups/channels";
 import { giftCategoriesMockup } from "@/commons/mockups/gift";
 import {
   Actionsheet,

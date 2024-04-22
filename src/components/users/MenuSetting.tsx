@@ -1,5 +1,4 @@
 import {
-  iconAngleRight,
   iconBag,
   iconContribute,
   iconHeadphone,
@@ -7,9 +6,8 @@ import {
   iconRatings,
   iconSetting,
 } from "@/commons/assets";
-import { Box, FlatList, HStack, Text, useTheme } from "native-base";
+import { HStack, Text, useTheme, VStack } from "native-base";
 import React from "react";
-import WrapIcon from "../wrapper/WrapIcon";
 import { TouchableOpacity } from "react-native";
 import FeatherIcon from "react-native-vector-icons/Feather";
 type Props = {};
@@ -40,9 +38,15 @@ const menuMockup = [
     id: "support-customer",
     iconLeft: iconHeadphone,
   },
+
   {
     title: "Setting",
     id: "setting",
+    iconLeft: iconSetting,
+  },
+  {
+    title: "QR Code",
+    id: "qr-code",
     iconLeft: iconSetting,
   },
 ];
@@ -50,34 +54,31 @@ const menuMockup = [
 function MenuSetting({}: Props) {
   const { colors } = useTheme();
   return (
-    <Box mt="4">
-      <FlatList
-        data={menuMockup}
-        renderItem={({ item }) => (
-          <TouchableOpacity>
-            <HStack
-              alignItems="center"
-              px="5"
-              py="4"
-              justifyContent="space-between"
-            >
-              <HStack alignItems="center" space="3">
-                <WrapIcon size="8" source={item.iconLeft} alt="btn-right" />
-                <Text fontSize="md" fontWeight="semibold" color="gray.600">
-                  {item.title}
-                </Text>
-              </HStack>
-
-              <FeatherIcon
-                name="chevron-right"
-                size={20}
-                color={colors.gray[500]}
-              />
+    <VStack space="3">
+      {menuMockup.map((item) => (
+        <TouchableOpacity key={item.id}>
+          <HStack
+            alignItems="center"
+            px="5"
+            py="4"
+            justifyContent="space-between"
+          >
+            <HStack alignItems="center" space="3">
+              {/* <WrapIcon size="8" source={item.iconLeft} alt="btn-right" /> */}
+              <Text fontSize="md" fontWeight="semibold" color="gray.600">
+                {item.title}
+              </Text>
             </HStack>
-          </TouchableOpacity>
-        )}
-      />
-    </Box>
+
+            <FeatherIcon
+              name="chevron-right"
+              size={20}
+              color={colors.gray[500]}
+            />
+          </HStack>
+        </TouchableOpacity>
+      ))}
+    </VStack>
   );
 }
 

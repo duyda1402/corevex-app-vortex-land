@@ -1,6 +1,6 @@
 import { ScreenNameEnum } from "@/commons/enum/screens";
 import ChatScreen from "@/screens/chat-tabs/ChatScreen";
-import HomeScreen from "@/screens/HomeScreen";
+import LevelScreen from "@/screens/LevelScreen";
 import LoginScreen from "@/screens/LoginScreen";
 import MainScreen from "@/screens/MainScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -24,6 +24,11 @@ function RouterApp() {
         name={ScreenNameEnum.ChatScreen}
         options={{ headerShown: false }}
         component={ChatScreen}
+      />
+      <Stack.Screen
+        name={ScreenNameEnum.LevelScreen}
+        options={{ headerShown: false }}
+        component={LevelScreen}
       />
     </Stack.Navigator>
   );

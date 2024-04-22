@@ -1,4 +1,4 @@
-import ViewMain from "@/components/ViewMain";
+import MainAppView from "@/components/ViewMain";
 import ComingSoon from "@/components/views/ComingSoon";
 import { Text } from "native-base";
 import React from "react";
@@ -8,9 +8,9 @@ type Props = {};
 
 function DiscoverScreen({}: Props) {
   return (
-    <ViewMain>
+    <MainAppView>
       <ComingSoon feature="Discover Screen" />
-    </ViewMain>
+    </MainAppView>
   );
 }
 

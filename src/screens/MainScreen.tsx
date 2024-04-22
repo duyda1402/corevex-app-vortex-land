@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Image } from "native-base";
+import { Avatar, Image } from "native-base";
 import React from "react";
 
 import { TabNameEnum } from "@/commons/enum/screens";
@@ -17,6 +17,11 @@ import MeScreen from "./MeScreen";
 import RoomScreen from "./RoomScreen";
 import WrapIcon from "@/components/wrapper/WrapIcon";
 import WrapFastImg from "@/components/wrapper/WrapFastImg";
+import IconGamePad from "@/components/icon-system/IconGamePad";
+import IconCouch from "@/components/icon-system/IconCouch";
+import IconCommentDots from "@/components/icon-system/IconCommentDots";
+import IconWishlistHeart from "@/components/icon-system/IconWishlistHeart";
+import { userAuth } from "@/commons/mockups/auther";
 
 type Props = {};
 
@@ -29,31 +34,52 @@ const menuApp = [
   {
     name: TabNameEnum.BoardGameTab,
     label: "Adventure",
-    sourceIcon: IconAdventure,
+    sourceIcon: ({ focused }: { focused: boolean }) => (
+      <IconGamePad size={24} color={focused ? COLOR_ACTIVE : COLOR_INACTIVE} />
+    ),
     component: AdventureScreen,
   },
   {
     name: TabNameEnum.RoomTab,
-    label: "Room",
-    sourceIcon: IconRoom,
+    label: "Party",
+    sourceIcon: ({ focused }: { focused: boolean }) => (
+      <IconCouch size={24} color={focused ? COLOR_ACTIVE : COLOR_INACTIVE} />
+    ),
     component: RoomScreen,
   },
   {
     name: TabNameEnum.ChannelTab,
     label: "Chat",
-    sourceIcon: IconChat,
+    sourceIcon: ({ focused }: { focused: boolean }) => (
+      <IconCommentDots
+        size={24}
+        color={focused ? COLOR_ACTIVE : COLOR_INACTIVE}
+      />
+    ),
     component: ChannelListScreen,
   },
   {
     name: TabNameEnum.Discover,
     label: "Discover",
-    sourceIcon: IconDiscover,
+    sourceIcon: ({ focused }: { focused: boolean }) => (
+      <IconWishlistHeart
+        size={24}
+        color={focused ? COLOR_ACTIVE : COLOR_INACTIVE}
+      />
+    ),
     component: DiscoverScreen,
   },
   {
     name: TabNameEnum.MeTab,
     label: "Me",
-    sourceIcon: IconMe,
+    sourceIcon: ({ focused }: { focused: boolean }) => (
+      <Avatar
+        borderColor={focused ? COLOR_ACTIVE : COLOR_INACTIVE}
+        borderWidth={2}
+        source={{ uri: userAuth.profile_url }}
+        size="sm"
+      />
+    ),
     component: MeScreen,
   },
 ];
@@ -80,17 +106,7 @@ const MainScreen = ({}: Props) => {
             title: menu.label,
             tabBarActiveTintColor: COLOR_ACTIVE,
             tabBarInactiveTintColor: COLOR_INACTIVE,
-            tabBarIcon: ({ focused }) => (
-              <WrapFastImg
-                alt={menu.label}
-                source={menu.sourceIcon}
-                style={{
-                  width: 24,
-                  height: 24,
-                  tintColor: focused ? COLOR_ACTIVE : COLOR_INACTIVE,
-                }}
-              />
-            ),
+            tabBarIcon: ({ focused }) => menu.sourceIcon({ focused }),
           }}
         />
       ))}

@@ -1,25 +1,34 @@
 import { imageMockup } from "@/commons/assets";
+import { ScreenNameEnum } from "@/commons/enum/screens";
 import { userAuth } from "@/commons/mockups/auther";
+import IconBackpack from "@/components/icon-system/IconBackpack";
+import IconCalendarCheck from "@/components/icon-system/IconCalendarCheck";
+import IconCrown from "@/components/icon-system/IconCrown";
+import IconGem from "@/components/icon-system/IconGem";
+import IconHomeHeart from "@/components/icon-system/IconHomeHeart";
+import IconPeopleRoof from "@/components/icon-system/IconPeopleRoof";
+import IconRocketLunch from "@/components/icon-system/IconRocketLunch";
+import IconSearchHeart from "@/components/icon-system/IconSearchHeart";
 import ParallaxHeaderScrollView from "@/components/ui/ParallaxHeaderScrollView";
 import MenuSetting from "@/components/users/MenuSetting";
-import UserController from "@/components/users/UserController";
+import PersonalController from "@/components/users/PersonalController";
+import PersonalWallet from "@/components/users/PersonalWallet";
 import UserInfo from "@/components/users/UserInfo";
 import WrapFastImg from "@/components/wrapper/WrapFastImg";
-import { Avatar, Box, HStack, Text, useTheme, View } from "native-base";
+import { Avatar, Box, HStack, Text, useTheme, View, VStack } from "native-base";
 import React, { useState } from "react";
-import { StatusBar } from "react-native";
+import { StatusBar, TouchableOpacity } from "react-native";
 import Animated, {
   interpolate,
   interpolateColor,
   SharedValue,
   useAnimatedStyle,
-  useDerivedValue,
 } from "react-native-reanimated";
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
-import FeatherIcon from "react-native-vector-icons/Feather";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 type Props = {};
 
@@ -28,6 +37,51 @@ const IMG_HEIGHT = 330;
 function MeScreen({}: Props) {
   const [me] = useState(userAuth);
   const { colors } = useTheme();
+  const menuPersonal = [
+    {
+      id: "backpack",
+      label: "Backpack",
+      icon: <IconBackpack color={colors.gray[700]} size={20} />,
+    },
+    {
+      id: "friendship",
+      label: "Friendship",
+      icon: <IconHomeHeart color={colors.gray[700]} size={20} />,
+    },
+    {
+      id: "check-in",
+      label: "Check In",
+      icon: <IconCalendarCheck color={colors.gray[700]} size={20} />,
+    },
+    {
+      id: "level",
+      label: "Level",
+      icon: <IconRocketLunch color={colors.gray[700]} size={20} />,
+      router: ScreenNameEnum.LevelScreen,
+    },
+  ];
+  const menuPrivileges = [
+    {
+      id: "noble",
+      label: "Noble",
+      icon: <IconCrown color={colors.gray[700]} size={20} />,
+    },
+    {
+      id: "vip",
+      label: "VIP",
+      icon: <IconGem color={colors.gray[700]} size={20} />,
+    },
+    {
+      id: "family",
+      label: "Family",
+      icon: <IconPeopleRoof color={colors.gray[700]} size={20} />,
+    },
+    {
+      id: "guest",
+      label: "Guest",
+      icon: <IconSearchHeart color={colors.gray[700]} size={20} />,
+    },
+  ];
 
   return (
     <SafeAreaProvider>
@@ -35,7 +89,7 @@ function MeScreen({}: Props) {
         renderHeader={(props) => <HeaderCustom me={me} {...props} />}
         renderParallaxBackground={({ width, height }) => (
           <WrapFastImg
-            source={imageMockup}
+            source={{ uri: me.profile_url }}
             alt="hero"
             style={{ width, height: height }}
             resizeMode="cover"
@@ -50,16 +104,21 @@ function MeScreen({}: Props) {
           borderTopLeftRadius: 24,
           borderTopRightRadius: 24,
         }}
+        nestedScrollEnabled={true}
       >
-        <View>
-          <Box marginTop={-10}>
+        <VStack space="4">
+          <Box marginTop={-5}>
             <UserInfo user={me} />
           </Box>
-
-          <UserController />
+          <PersonalWallet />
+          <PersonalController
+            menu={menuPersonal}
+            title="Personal"
+            isBackground
+          />
+          <PersonalController menu={menuPrivileges} title="Privileges" />
           <MenuSetting />
-          <MenuSetting />
-        </View>
+        </VStack>
       </ParallaxHeaderScrollView>
 
       <StatusBar translucent />
@@ -89,7 +148,7 @@ const HeaderCustom = ({
         ? 0
         : interpolate(
             animatedValue?.value,
-            [0, height * 2, height * 3],
+            [0, height * 3.99, height * 4],
             [0, 0, 1]
           ),
     };
@@ -105,7 +164,6 @@ const HeaderCustom = ({
     };
   }, []);
 
-  console.log(iconColor);
   return (
     <View
       style={[
@@ -127,9 +185,23 @@ const HeaderCustom = ({
           </Text>
         </HStack>
       </Animated.View>
-      <Animated.Text style={[iconColor]}>
-        <FeatherIcon name="more-vertical" size={20} />
-      </Animated.Text>
+      <HStack space="3">
+        <TouchableOpacity onPress={() => alert("Scan")}>
+          <Animated.Text style={[iconColor]}>
+            <Ionicons name="scan" size={24} />
+          </Animated.Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => alert("Shop")}>
+          <Animated.Text style={[iconColor]}>
+            <Ionicons name="storefront-outline" size={24} />
+          </Animated.Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => alert("Setting")}>
+          <Animated.Text style={[iconColor]}>
+            <Ionicons name="settings-outline" size={24} />
+          </Animated.Text>
+        </TouchableOpacity>
+      </HStack>
     </View>
   );
 };

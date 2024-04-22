@@ -1,3 +1,4 @@
+import { findLastKey } from "lodash";
 import React from "react";
 import {
   Dimensions,
@@ -49,6 +50,7 @@ type Props = {
   backgroundScale: number;
   parallaxBackgroundScrollSpeed: number;
   fadeOutParallaxBackground?: boolean;
+  nestedScrollEnabled?: boolean;
 };
 
 ParallaxHeaderScrollView.defaultProps = {
@@ -68,6 +70,7 @@ ParallaxHeaderScrollView.defaultProps = {
   backgroundScaleOrigin: "top",
   parallaxBackgroundScrollSpeed: 5,
   fadeOutParallaxBackground: false,
+  nestedScrollEnabled: false,
 };
 
 function ParallaxHeaderScrollView(props: Props) {
@@ -87,6 +90,7 @@ function ParallaxHeaderScrollView(props: Props) {
     // renderItem,
     // dataSource,
     // scrollStyle,
+    nestedScrollEnabled,
     parallaxHeight,
     wrapperContentStyle,
     // useNativeDriver,
@@ -112,6 +116,7 @@ function ParallaxHeaderScrollView(props: Props) {
       <Animated.ScrollView
         ref={scrollRef}
         scrollEventThrottle={scrollEventThrottle}
+        nestedScrollEnabled={nestedScrollEnabled}
       >
         {renderParallaxBackground &&
           RenderParallaxBackground({ scrollOfSet, ...props })}

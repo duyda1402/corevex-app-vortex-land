@@ -11,8 +11,11 @@ type Props = {
   mah?: DimensionValue;
   isInsetsBottom?: boolean;
 };
+MainAppView.defaultProps = {
+  isInsetsBottom: true,
+};
 
-const ViewMain = ({ children, mah, isInsetsBottom = true }: Props) => {
+function MainAppView({ children, mah, isInsetsBottom }: Props) {
   const insets = useSafeAreaInsets();
   return (
     <SafeAreaProvider>
@@ -30,6 +33,6 @@ const ViewMain = ({ children, mah, isInsetsBottom = true }: Props) => {
       </View>
     </SafeAreaProvider>
   );
-};
+}
 
-export default ViewMain;
+export default MainAppView;

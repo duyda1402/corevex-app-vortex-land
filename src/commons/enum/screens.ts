@@ -3,6 +3,7 @@ export enum ScreenNameEnum {
   LoginScreen = "login-screen",
   MainScreen = "main-screen",
   ChatScreen = "chat-screen",
+  LevelScreen = "level-screen",
 }
 
 export enum TabNameEnum {

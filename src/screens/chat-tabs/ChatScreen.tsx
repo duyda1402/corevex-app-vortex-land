@@ -1,7 +1,7 @@
 import { iconGiftColor } from "@/commons/assets";
 import { userMockupDodyy } from "@/commons/mockups/channels";
 import GiftsSheet from "@/components/gift/GiftsSheet";
-import ViewMain from "@/components/ViewMain";
+import MainAppView from "@/components/ViewMain";
 import WrapIcon from "@/components/wrapper/WrapIcon";
 import { getInfoChannel } from "@/untils";
 import { useNavigation } from "@react-navigation/native";
@@ -88,7 +88,7 @@ function ChatScreen({ route }: Props) {
   };
 
   return (
-    <ViewMain isInsetsBottom={true}>
+    <MainAppView isInsetsBottom={true}>
       <HStack justifyContent="space-between" alignItems="center" py="3" px="5">
         <FeatherIcon
           name="chevron-left"
@@ -196,7 +196,7 @@ function ChatScreen({ route }: Props) {
           </Animated.View>
         </Stack>
       </KeyboardAvoidingView>
-    </ViewMain>
+    </MainAppView>
   );
 }
 

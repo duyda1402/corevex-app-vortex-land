@@ -2,7 +2,7 @@ export const userMockupDodyy = {
   user_id: "dodyy14",
   nickname: "Mì ❄️",
   profile_url:
-    "https://i.pinimg.com/564x/7a/8f/22/7a8f22e1f93e46ebcf64614747d51cd3.jpg",
+    "https://i.pinimg.com/736x/79/af/a7/79afa717d253fd6be40d8796ba5028d2.jpg",
   require_auth_for_profile_image: false,
 };
 
