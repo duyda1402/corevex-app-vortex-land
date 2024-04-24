@@ -15,16 +15,26 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "googleServicesFile": "./assets/google-info/GoogleService-Info.plist",
+      "bundleIdentifier": "dodyy.vortex.app"
     },
     "android": {
+      "googleServicesFile": "./assets/google-info/google-services.json",
+      "package": "dodyy.vortex.app",
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo.png",
         "backgroundColor": "#ffffff"
       }
     },
-    "web": {
-      "favicon": "./assets/logo.png"
+    "plugins": [
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "a06e2adb-177c-4598-98cc-ee332483c3aa"
+      }
     }
   }
 }

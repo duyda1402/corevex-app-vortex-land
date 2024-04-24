@@ -7,7 +7,7 @@ import { Dimensions, TouchableHighlight } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNameEnum } from "@/commons/enum/screens";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "@/commons/types/root-stack";
+import { RootStackParamList } from "@/commons/types";
 
 type Props = {};
 //Mockup Data

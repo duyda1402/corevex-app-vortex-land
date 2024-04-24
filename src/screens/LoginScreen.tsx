@@ -1,6 +1,8 @@
 import { IconApple, iconLogo, IconMobile, IconTiktok } from "@/commons/assets";
 import { ScreenNameEnum } from "@/commons/enum/screens";
 import WrapIcon from "@/components/wrapper/WrapIcon";
+import auth from "@react-native-firebase/auth";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import {
   Avatar,
   Box,
@@ -8,7 +10,6 @@ import {
   Center,
   Heading,
   HStack,
-  Image,
   Stack,
   Text,
   VStack,
@@ -27,9 +28,30 @@ type Props = {
 
 const APP_NAME = process.env.EXPO_PUBLIC_APP_NAME;
 
+GoogleSignin.configure({
+  // offlineAccess: true,
+  // scopes: ["email", "profile"],
+  // iosClientId:
+  //   "184480126089-3sv6ld9agme1tmqogt25lr7i1iqoeg1c.apps.googleusercontent.com",
+});
+
 const LoginScreen = ({ navigation }: Props) => {
   const handlerGoMainScreen = () =>
     navigation.navigate(ScreenNameEnum.MainScreen);
+
+  async function onGoogleButtonPress() {
+    // Check if your device supports Google Play
+    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+    // Get the users ID token
+    const { idToken } = await GoogleSignin.signIn();
+
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    const user = await auth().signInWithCredential(googleCredential);
+    // Sign-in the user with the credential
+
+    return console.log(`Google`, user);
+  }
 
   return (
     <Stack h="100%" direction="column-reverse" bg="white">

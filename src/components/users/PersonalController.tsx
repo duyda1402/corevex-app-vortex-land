@@ -1,5 +1,5 @@
 import { ScreenNameEnum } from "@/commons/enum/screens";
-import { RootStackParamList } from "@/commons/types/root-stack";
+import { RootStackParamList } from "@/commons/types";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { Box, Heading, HStack, Text, VStack } from "native-base";
