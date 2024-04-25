@@ -167,13 +167,6 @@ function ChatScreen({ route }: Props) {
                 color={colors.gray[600]}
                 onPress={toggleAppMoreMenu}
               />
-              // <WrapIcon
-              //   size="5"
-              //   source={iconApps}
-              //   alt="btn-app-more"
-              //   style={{ tintColor: colors.gray[600] }}
-              //   onPress={toggleAppMoreMenu}
-              // />
             )}
           </HStack>
           {/* Screen Sheet Gift */}

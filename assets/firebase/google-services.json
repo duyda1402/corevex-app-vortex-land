@@ -1,0 +1,50 @@
+{
+  "project_info": {
+    "project_number": "184480126089",
+    "project_id": "vortex-dev-d7878",
+    "storage_bucket": "vortex-dev-d7878.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184480126089:android:eca1a02fc0d184bc12a258",
+        "android_client_info": {
+          "package_name": "com.dodyy.vortex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "184480126089-uujdp1rq4vjadol4j3lqrf9geoid4prh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dodyy.vortex",
+            "certificate_hash": "d0d27d62015bc975f3113e7f40382bdd7a890d0f"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClGFhY3o3EK720cKHFIBBxs1AkEBWny8o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "184480126089-fhoji8fav5dlua6ec88aiae7rqi1r2qe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "184480126089-3sv6ld9agme1tmqogt25lr7i1iqoeg1c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dodyy.vortex.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

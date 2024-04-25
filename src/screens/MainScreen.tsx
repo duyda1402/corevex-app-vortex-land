@@ -1,27 +1,18 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Avatar, Image } from "native-base";
+import { Avatar } from "native-base";
 import React from "react";
 
 import { TabNameEnum } from "@/commons/enum/screens";
-import {
-  IconAdventure,
-  IconChat,
-  IconDiscover,
-  IconMe,
-  IconRoom,
-} from "@/commons/assets";
+import { userAuth } from "@/commons/mockups/auther";
+import IconCommentDots from "@/components/icon-system/IconCommentDots";
+import IconCouch from "@/components/icon-system/IconCouch";
+import IconGamePad from "@/components/icon-system/IconGamePad";
+import IconWishlistHeart from "@/components/icon-system/IconWishlistHeart";
 import AdventureScreen from "./AdventureScreen";
 import ChannelListScreen from "./chat-tabs/ChannelListScreen";
 import DiscoverScreen from "./DiscoverScreen";
 import MeScreen from "./MeScreen";
 import RoomScreen from "./RoomScreen";
-import WrapIcon from "@/components/wrapper/WrapIcon";
-import WrapFastImg from "@/components/wrapper/WrapFastImg";
-import IconGamePad from "@/components/icon-system/IconGamePad";
-import IconCouch from "@/components/icon-system/IconCouch";
-import IconCommentDots from "@/components/icon-system/IconCommentDots";
-import IconWishlistHeart from "@/components/icon-system/IconWishlistHeart";
-import { userAuth } from "@/commons/mockups/auther";
 
 type Props = {};
 
@@ -90,7 +81,7 @@ const MainScreen = ({}: Props) => {
       initialRouteName={TabNameEnum.BoardGameTab}
       screenOptions={{
         tabBarStyle: {
-          height: 90,
+          height: 60,
           paddingRight: 6,
           paddingLeft: 6,
         },

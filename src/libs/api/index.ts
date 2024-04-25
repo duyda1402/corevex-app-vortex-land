@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios, { HttpStatusCode } from "axios";
 
 import { TokenInfo } from "@/commons/types";

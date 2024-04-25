@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:184480126089:android:4a380a0740e4063d12a258",
+        "mobilesdk_app_id": "1:184480126089:android:eca1a02fc0d184bc12a258",
         "android_client_info": {
-          "package_name": "dodyy.vortex.app"
+          "package_name": "com.dodyy.vortex"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "184480126089-uujdp1rq4vjadol4j3lqrf9geoid4prh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dodyy.vortex",
+            "certificate_hash": "d0d27d62015bc975f3113e7f40382bdd7a890d0f"
+          }
+        },
         {
           "client_id": "184480126089-cdfkd12nk4p1e5pn70sk0n4oi82a62g3.apps.googleusercontent.com",
           "client_type": 3

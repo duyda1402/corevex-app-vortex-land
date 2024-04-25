@@ -1,8 +1,7 @@
 import { IconApple, iconLogo, IconMobile, IconTiktok } from "@/commons/assets";
 import { ScreenNameEnum } from "@/commons/enum/screens";
 import WrapIcon from "@/components/wrapper/WrapIcon";
-import auth from "@react-native-firebase/auth";
-import { GoogleSignin } from "@react-native-google-signin/google-signin";
+
 import {
   Avatar,
   Box,
@@ -19,38 +18,70 @@ import {
   ColorType,
   ResponsiveValue,
 } from "native-base/lib/typescript/components/types";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ImageSourcePropType, TouchableOpacity } from "react-native";
-
+import auth from "@react-native-firebase/auth";
+import { appleAuth } from "@invertase/react-native-apple-authentication";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 type Props = {
   navigation: any;
 };
 
 const APP_NAME = process.env.EXPO_PUBLIC_APP_NAME;
-
-GoogleSignin.configure({
-  // offlineAccess: true,
-  // scopes: ["email", "profile"],
-  // iosClientId:
-  //   "184480126089-3sv6ld9agme1tmqogt25lr7i1iqoeg1c.apps.googleusercontent.com",
-});
-
+const CLIENT_ID =
+  "184480126089-uujdp1rq4vjadol4j3lqrf9geoid4prh.apps.googleusercontent.com";
 const LoginScreen = ({ navigation }: Props) => {
   const handlerGoMainScreen = () =>
     navigation.navigate(ScreenNameEnum.MainScreen);
 
+  useEffect(() => {}, [
+    GoogleSignin.configure({
+      webClientId: CLIENT_ID,
+    }),
+  ]);
+
   async function onGoogleButtonPress() {
-    // Check if your device supports Google Play
-    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-    // Get the users ID token
-    const { idToken } = await GoogleSignin.signIn();
+    try {
+      // Check if your device supports Google Play
+      const hasPlayServices = await GoogleSignin.hasPlayServices();
+      if (!hasPlayServices) return;
+      // Get the users ID token
+      const { idToken } = await GoogleSignin.signIn();
+      console.log("Google idToken", idToken);
+      // Create a Google credential with the token
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+      // Sign-in the user with the credential
+      const user = await auth().signInWithCredential(googleCredential);
+      console.log("Google idToken", user);
+      return alert(idToken);
+    } catch (err: any) {
+      console.error(JSON.stringify(err));
+    }
+  }
 
-    // Create a Google credential with the token
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    const user = await auth().signInWithCredential(googleCredential);
-    // Sign-in the user with the credential
+  async function onAppleButtonPress() {
+    // Start the sign-in request
+    const appleAuthRequestResponse = await appleAuth.performRequest({
+      requestedOperation: appleAuth.Operation.LOGIN,
+      // As per the FAQ of react-native-apple-authentication, the name should come first in the following array.
+      // See: https://github.com/invertase/react-native-apple-authentication#faqs
+      requestedScopes: [appleAuth.Scope.FULL_NAME, appleAuth.Scope.EMAIL],
+    });
 
-    return console.log(`Google`, user);
+    // Ensure Apple returned a user identityToken
+    if (!appleAuthRequestResponse.identityToken) {
+      throw new Error("Apple Sign-In failed - no identify token returned");
+    }
+
+    // Create a Firebase credential from the response
+    const { identityToken, nonce } = appleAuthRequestResponse;
+    const appleCredential = auth.AppleAuthProvider.credential(
+      identityToken,
+      nonce
+    );
+
+    // Sign the user in with the credential
+    return alert(JSON.stringify(auth().signInWithCredential(appleCredential)));
   }
 
   return (
@@ -69,7 +100,7 @@ const LoginScreen = ({ navigation }: Props) => {
         {/* Spacing */}
         <Box h="25%"></Box>
         <VStack space={4} paddingX="12">
-          <Button variant="outline" rounded={99} onPress={handlerGoMainScreen}>
+          <Button variant="outline" rounded={99} onPress={onGoogleButtonPress}>
             Login with Google
           </Button>
           <Button variant="outline" rounded={99}>
@@ -78,7 +109,7 @@ const LoginScreen = ({ navigation }: Props) => {
           <HStack space={3} justifyContent="center">
             <ButtonAnotherLogin
               source={IconApple}
-              onPress={() => console.log("Login Apple")}
+              onPress={onAppleButtonPress}
               bg="gray.100"
             />
             <ButtonAnotherLogin

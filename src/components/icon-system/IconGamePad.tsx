@@ -1,11 +1,12 @@
 import React from "react";
-import Svg, { Circle, Color, Path } from "react-native-svg";
+import { ColorValue } from "react-native";
+import Svg, { Circle, Path } from "react-native-svg";
 
 type Props = {
   size?: number;
 
   strokeWidth?: number;
-  color?: Color;
+  color?: ColorValue;
 };
 
 const IconGamePad = ({

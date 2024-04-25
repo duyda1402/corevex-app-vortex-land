@@ -1,4 +1,3 @@
-import { avatarMockup } from "@/commons/assets";
 import { Avatar, HStack, Text, useTheme, VStack } from "native-base";
 import React from "react";
 
@@ -7,7 +6,6 @@ type Props = {
 };
 
 function UserInfo({ user }: Props) {
-  const { colors } = useTheme();
   return (
     <HStack
       style={{ borderTopLeftRadius: 24, borderTopRightRadius: 24 }}
@@ -40,23 +38,7 @@ function UserInfo({ user }: Props) {
             {user.address}
           </Text>
         </HStack>
-
-        {/* <HStack>
-            <HStack
-              space="0.5"
-              bg="violet.700"
-              px="1"
-              rounded="sm"
-              alignItems="center"
-            >
-              <Image w="3.5" h="3.5" source={IconRank11} alt="rank" />
-              <Text fontSize="xs" color="white" fontWeight="bold">
-                {user.rank}
-              </Text>
-            </HStack>
-          </HStack> */}
       </VStack>
-      {/* <FeatherIcon name="chevron-right" size={20} color={colors.gray[500]} /> */}
     </HStack>
   );
 }

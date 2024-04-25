@@ -1,13 +1,12 @@
-import { ChannelType } from "@/commons/enum/channel";
+import { ScreenNameEnum } from "@/commons/enum/screens";
 import { channelsMockup, userMockupDodyy } from "@/commons/mockups/channels";
+import { RootStackParamList } from "@/commons/types";
 import { formatRelativeTime, getInfoChannel } from "@/untils";
-import { Avatar, HStack, VStack, Text } from "native-base";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { Avatar, HStack, Text, VStack } from "native-base";
 import React from "react";
 import { Dimensions, TouchableHighlight } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { ScreenNameEnum } from "@/commons/enum/screens";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "@/commons/types";
 
 type Props = {};
 //Mockup Data

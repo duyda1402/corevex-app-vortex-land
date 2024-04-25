@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>184480126089-3sv6ld9agme1tmqogt25lr7i1iqoeg1c.apps.googleusercontent.com</string>
+	<string>184480126089-41jhjhg0k8tkha484rshe7eluveo1j0f.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.184480126089-3sv6ld9agme1tmqogt25lr7i1iqoeg1c</string>
+	<string>com.googleusercontent.apps.184480126089-41jhjhg0k8tkha484rshe7eluveo1j0f</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>184480126089-u4t0usqgbc6tjb6vghqu6j6vlj9b8s44.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDf4PvrD1iAYk2MUDTRmaaDnGlqkyoAvd0</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>dodyy.vortex.app</string>
+	<string>com.dodyy.vortex</string>
 	<key>PROJECT_ID</key>
 	<string>vortex-dev-d7878</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:184480126089:ios:5f017693a566bef912a258</string>
+	<string>1:184480126089:ios:b3472076fc7809e512a258</string>
 </dict>
 </plist>

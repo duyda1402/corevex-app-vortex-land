@@ -1,0 +1,26 @@
+import RouterApp from "@/routers";
+import { NavigationContainer } from "@react-navigation/native";
+import { registerRootComponent } from "expo";
+import { NativeBaseProvider } from "native-base";
+import { useEffect } from "react";
+import { LogBox } from "react-native";
+import "react-native-gesture-handler";
+import "expo-dev-client";
+function App() {
+  useEffect(() => {
+    LogBox.ignoreLogs([
+      "In React 18, SSRProvider is not necessary and is a noop. You can remove it from your app.",
+      "ViewPropTypes will be removed from React Native",
+    ]);
+  }, []);
+
+  return (
+    <NativeBaseProvider>
+      <NavigationContainer>
+        <RouterApp />
+      </NavigationContainer>
+    </NativeBaseProvider>
+  );
+}
+
+registerRootComponent(App);

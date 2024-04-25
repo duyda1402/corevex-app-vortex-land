@@ -64,7 +64,6 @@ function MenuSetting({}: Props) {
             justifyContent="space-between"
           >
             <HStack alignItems="center" space="3">
-              {/* <WrapIcon size="8" source={item.iconLeft} alt="btn-right" /> */}
               <Text fontSize="md" fontWeight="semibold" color="gray.600">
                 {item.title}
               </Text>

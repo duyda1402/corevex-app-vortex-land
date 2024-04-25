@@ -1,4 +1,3 @@
-import { findLastKey } from "lodash";
 import React from "react";
 import {
   Dimensions,
@@ -98,8 +97,8 @@ function ParallaxHeaderScrollView(props: Props) {
     // contentContainerStyle,
     renderParallaxBackground,
     // renderParallaxForeground,
-    ...scrollViewProps
   } = props;
+
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const scrollOfSet = useScrollViewOffset(scrollRef);
 

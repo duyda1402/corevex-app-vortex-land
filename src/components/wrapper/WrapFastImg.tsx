@@ -10,7 +10,6 @@ type Props = {
   alt?: string;
   style?: StyleProp<ImageStyle>;
   headers?: any;
-  // resizeMode?: "contain" | "cover" | "stretch" | "center" | ImageContentFit;
   resizeMode?: ImageContentFit;
 };
 
@@ -35,19 +34,6 @@ function WrapFastImg({
       contentFit={resizeMode}
       transition={1000}
     />
-    // <FastImage
-    //   style={style}
-    //   source={
-    //     source
-    //       ? source
-    //       : {
-    //           uri: uri,
-    //           headers: headers,
-    //           priority: FastImage.priority.normal,
-    //         }
-    //   }
-    //   resizeMode={FastImage.resizeMode[resizeMode]}
-    // />
   );
 }
 
