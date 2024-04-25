@@ -1,5 +1,5 @@
-import MainAppView from "@/components/ViewMain";
-import { formatLargeNumber } from "@/untils";
+import MainAppView from "@/components/layouts/ViewMain";
+import { formatLargeNumber } from "@/utils";
 import { useNavigation } from "@react-navigation/native";
 import {
   Box,

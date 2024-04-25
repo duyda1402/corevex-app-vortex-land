@@ -3,7 +3,7 @@ import { ExpoConfig, ConfigContext } from "expo/config";
 module.exports = ({ config }: ConfigContext): ExpoConfig => {
   // prints 'My App'
   return {
-    name: "Vortex Land",
+    name: process.env.EXPO_PUBLIC_APP_NAME!,
     slug: "corevex-app-vortex-land",
     version: "1.0.0",
     orientation: "portrait",
@@ -25,7 +25,7 @@ module.exports = ({ config }: ConfigContext): ExpoConfig => {
       bundleIdentifier: "com.dodyy.vortex",
     },
     android: {
-      googleServicesFile: process.env.GOOGLE_SERVICES_JSON,
+      googleServicesFile: "./assets/firebase/google-services.json",
       package: "com.dodyy.vortex",
       adaptiveIcon: {
         foregroundImage: "./assets/logo.png",

@@ -1,6 +1,6 @@
-import { imageMockup } from "@/commons/assets";
+import { avatarDefault } from "@/commons/assets";
 import { ScreenNameEnum } from "@/commons/enum/screens";
-import { userAuth } from "@/commons/mockups/auther";
+import { UserInfo } from "@/commons/types";
 import IconBackpack from "@/components/icon-system/IconBackpack";
 import IconCalendarCheck from "@/components/icon-system/IconCalendarCheck";
 import IconCrown from "@/components/icon-system/IconCrown";
@@ -12,11 +12,12 @@ import IconSearchHeart from "@/components/icon-system/IconSearchHeart";
 import ParallaxHeaderScrollView from "@/components/ui/ParallaxHeaderScrollView";
 import MenuSetting from "@/components/users/MenuSetting";
 import PersonalController from "@/components/users/PersonalController";
+import PersonalHero from "@/components/users/PersonalHero";
 import PersonalWallet from "@/components/users/PersonalWallet";
-import UserInfo from "@/components/users/UserInfo";
 import WrapFastImg from "@/components/wrapper/WrapFastImg";
+import { RootState } from "@/libs/store";
 import { Avatar, Box, HStack, Text, useTheme, View, VStack } from "native-base";
-import React, { useState } from "react";
+import React from "react";
 import { StatusBar, TouchableOpacity } from "react-native";
 import Animated, {
   interpolate,
@@ -29,13 +30,14 @@ import {
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { useSelector } from "react-redux";
 
 type Props = {};
 
 const IMG_HEIGHT = 330;
 
 function MeScreen({}: Props) {
-  const [me] = useState(userAuth);
+  const me = useSelector((state: RootState) => state.auth.me);
   const { colors } = useTheme();
   const menuPersonal = [
     {
@@ -60,6 +62,7 @@ function MeScreen({}: Props) {
       router: ScreenNameEnum.LevelScreen,
     },
   ];
+
   const menuPrivileges = [
     {
       id: "noble",
@@ -89,7 +92,7 @@ function MeScreen({}: Props) {
         renderHeader={(props) => <HeaderCustom me={me} {...props} />}
         renderParallaxBackground={({ width, height }) => (
           <WrapFastImg
-            source={{ uri: me.profile_url }}
+            source={me?.picture ? { uri: me.picture } : avatarDefault}
             alt="hero"
             style={{ width, height: height }}
             resizeMode="cover"
@@ -108,7 +111,7 @@ function MeScreen({}: Props) {
       >
         <VStack space="4">
           <Box marginTop={-5}>
-            <UserInfo user={me} />
+            <PersonalHero me={me} />
           </Box>
           <PersonalWallet />
           <PersonalController
@@ -137,7 +140,7 @@ const HeaderCustom = ({
   width?: number;
   height?: number;
   animatedValue?: SharedValue<any>;
-  me?: any;
+  me?: UserInfo | null;
 }) => {
   const { colors } = useTheme();
   const insets = useSafeAreaInsets();
@@ -179,7 +182,10 @@ const HeaderCustom = ({
     >
       <Animated.View style={[headerAnimatedStyle]}>
         <HStack space="3" alignItems="center">
-          <Avatar size="sm" source={{ uri: me?.profile_url }} />
+          <Avatar
+            size="sm"
+            source={me?.picture ? { uri: me?.picture } : avatarDefault}
+          />
           <Text fontSize="lg" fontWeight="bold" color="gray.700">
             {me?.nickname}
           </Text>

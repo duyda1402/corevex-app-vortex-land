@@ -1,6 +1,6 @@
 import GroupChannelList from "@/components/chatters/GroupChannelList";
-import MainAppView from "@/components/ViewMain";
-import { Box, Heading, ScrollView, Text } from "native-base";
+import MainAppView from "@/components/layouts/ViewMain";
+import { Box, Heading, ScrollView } from "native-base";
 import React from "react";
 
 type Props = {};

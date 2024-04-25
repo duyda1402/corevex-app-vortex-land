@@ -14,9 +14,7 @@ export const iconCoinBase = require("../../../assets/base/coin.png");
 export const iconLogo = require("../../../assets/logo.png");
 
 //Image Mockup
-export const imageDefault = require("../../../assets/icons/image-default.jpg");
-export const imageMockup = require("../../../assets/imgs/image-mockup.jpg");
-export const avatarMockup = require("../../../assets/imgs/avt-mockup.jpg");
+export const avatarDefault = require("../../../assets/imgs/avatar.png");
 
 //Icon menu
 export const IconAdventure = require("../../../assets/icons/gamepad.png");

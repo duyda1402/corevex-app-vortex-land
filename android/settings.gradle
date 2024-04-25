@@ -1,4 +1,4 @@
-rootProject.name = 'Vortex Land'
+rootProject.name = 'VortexLand'
 
 dependencyResolutionManagement {
   versionCatalogs {

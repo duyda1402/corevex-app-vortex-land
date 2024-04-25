@@ -1,5 +1,6 @@
 export enum ScreenNameEnum {
   HomeScreen = "home-screen",
+  WelcomeScreen = "welcome-screen",
   LoginScreen = "login-screen",
   MainScreen = "main-screen",
   ChatScreen = "chat-screen",

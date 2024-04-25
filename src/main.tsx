@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import { LogBox } from "react-native";
 import "react-native-gesture-handler";
 import "expo-dev-client";
+import { Provider as ReduxProvider } from "react-redux";
+import { store } from "./libs/store";
 function App() {
   useEffect(() => {
     LogBox.ignoreLogs([
@@ -17,7 +19,9 @@ function App() {
   return (
     <NativeBaseProvider>
       <NavigationContainer>
-        <RouterApp />
+        <ReduxProvider store={store}>
+          <RouterApp />
+        </ReduxProvider>
       </NavigationContainer>
     </NativeBaseProvider>
   );

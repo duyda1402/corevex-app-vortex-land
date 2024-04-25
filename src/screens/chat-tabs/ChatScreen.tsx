@@ -1,9 +1,9 @@
 import { iconGiftColor } from "@/commons/assets";
 import { userMockupDodyy } from "@/commons/mockups/channels";
 import GiftsSheet from "@/components/gift/GiftsSheet";
-import MainAppView from "@/components/ViewMain";
+import MainAppView from "@/components/layouts/ViewMain";
 import WrapIcon from "@/components/wrapper/WrapIcon";
-import { getInfoChannel } from "@/untils";
+
 import { useNavigation } from "@react-navigation/native";
 import {
   Actionsheet,
@@ -27,6 +27,7 @@ import {
 } from "react-native";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import MessageList from "./MessageList";
+import { getInfoChannel } from "@/utils";
 
 type Props = {
   navigation: any;

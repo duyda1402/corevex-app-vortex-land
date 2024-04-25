@@ -65,3 +65,19 @@ export function formatLargeNumber(num: number, sizeFixed = 1): string {
   }
   return num.toString();
 }
+
+export function convertCountryState({
+  country,
+  state,
+}: {
+  country?: string | null;
+  state?: string | null;
+}) {
+  if (!country) {
+    return "";
+  } else if (!state) {
+    return country;
+  } else {
+    return `${state}, ${country}`;
+  }
+}

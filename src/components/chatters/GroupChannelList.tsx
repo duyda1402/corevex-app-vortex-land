@@ -1,7 +1,8 @@
 import { ScreenNameEnum } from "@/commons/enum/screens";
 import { channelsMockup, userMockupDodyy } from "@/commons/mockups/channels";
 import { RootStackParamList } from "@/commons/types";
-import { formatRelativeTime, getInfoChannel } from "@/untils";
+import { formatRelativeTime, getInfoChannel } from "@/utils";
+
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { Avatar, HStack, Text, VStack } from "native-base";

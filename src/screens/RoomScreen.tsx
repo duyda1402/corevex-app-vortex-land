@@ -1,6 +1,5 @@
-import MainAppView from "@/components/ViewMain";
+import MainAppView from "@/components/layouts/ViewMain";
 import ComingSoon from "@/components/views/ComingSoon";
-import { ScrollView, Text } from "native-base";
 import React from "react";
 
 type Props = {};

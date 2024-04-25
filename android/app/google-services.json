@@ -20,10 +20,6 @@
             "package_name": "com.dodyy.vortex",
             "certificate_hash": "d0d27d62015bc975f3113e7f40382bdd7a890d0f"
           }
-        },
-        {
-          "client_id": "184480126089-cdfkd12nk4p1e5pn70sk0n4oi82a62g3.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [
@@ -35,7 +31,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "184480126089-cdfkd12nk4p1e5pn70sk0n4oi82a62g3.apps.googleusercontent.com",
+              "client_id": "184480126089-fhoji8fav5dlua6ec88aiae7rqi1r2qe.apps.googleusercontent.com",
               "client_type": 3
             },
             {

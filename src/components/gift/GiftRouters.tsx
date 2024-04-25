@@ -1,6 +1,6 @@
 import { iconDiamondBase } from "@/commons/assets";
 import { giftsMockup, tagsGiftMockup } from "@/commons/mockups/gift";
-import { convertArrToArrays } from "@/untils";
+import { convertArrToArrays } from "@/utils";
 import { isArray } from "lodash";
 import { Box, HStack, Text, useTheme, View, VStack } from "native-base";
 import React, { useMemo, useState } from "react";

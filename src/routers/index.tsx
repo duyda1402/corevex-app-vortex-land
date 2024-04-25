@@ -3,6 +3,7 @@ import ChatScreen from "@/screens/chat-tabs/ChatScreen";
 import LevelScreen from "@/screens/LevelScreen";
 import LoginScreen from "@/screens/LoginScreen";
 import MainScreen from "@/screens/MainScreen";
+import WelcomeScreen from "@/screens/WelcomeScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();
@@ -29,6 +30,11 @@ function RouterApp() {
         name={ScreenNameEnum.LevelScreen}
         options={{ headerShown: false }}
         component={LevelScreen}
+      />
+      <Stack.Screen
+        name={ScreenNameEnum.WelcomeScreen}
+        options={{ headerShown: false }}
+        component={WelcomeScreen}
       />
     </Stack.Navigator>
   );
