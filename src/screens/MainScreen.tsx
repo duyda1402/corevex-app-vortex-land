@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AdventureScreen from "./AdventureScreen";
 import ChannelListScreen from "./chat-tabs/ChannelListScreen";
 import DiscoverScreen from "./DiscoverScreen";
-import MeScreen from "./MeScreen";
+import MeScreen from "./me/MeScreen";
 import RoomScreen from "./RoomScreen";
 import OverlayLoading from "@/components/ui/OverlayLoading";
 

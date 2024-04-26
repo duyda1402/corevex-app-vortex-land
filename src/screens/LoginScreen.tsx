@@ -28,6 +28,7 @@ import { apiLoginUser } from "@/libs/api";
 import OverlayLoading from "@/components/ui/OverlayLoading";
 import { useNavigation } from "@react-navigation/native";
 import { NavigationCustomProps } from "@/commons/types";
+import ModalHandlerLoading from "@/components/layouts/modal/ModalHandlerLoading";
 
 type Props = {
   navigation: any;
@@ -58,7 +59,7 @@ const LoginScreen = ({}: Props) => {
     try {
       const idToken = (await auth().currentUser?.getIdToken()) || "";
       const user = await apiLoginUser(idToken);
-      if (user.isNewMember) {
+      if (!user.isNewMember) {
         navigation.replace(ScreenNameEnum.MainScreen);
       } else {
         navigation.replace(ScreenNameEnum.WelcomeScreen, { user: user });
@@ -139,14 +140,10 @@ const LoginScreen = ({}: Props) => {
         <OverlayLoading loading />
       ) : (
         <Stack h="100%" direction="column-reverse" bg="white">
-          <Modal isOpen={loading}>
-            <Center px="4" py="4" rounded="lg" maxW="1/2">
-              <Spinner color="white" size="lg" mb="2" />
-              <Text color="white" textAlign="center">
-                Logging in to {providerLogin}. Please wait...
-              </Text>
-            </Center>
-          </Modal>
+          <ModalHandlerLoading
+            loading={loading}
+            title={`Logging in to ${providerLogin}. Please wait...`}
+          />
           <Box>
             <Center>
               <VStack alignItems="center" space={2}>

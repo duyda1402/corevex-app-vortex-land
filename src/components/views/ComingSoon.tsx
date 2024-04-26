@@ -7,7 +7,7 @@ const ComingSoon = ({ feature }: Props) => (
   <Center>
     <Container>
       <Heading>
-        <Text color="emerald.500"> Coming Soon!</Text>
+        <Text color="violet.500"> Coming Soon!</Text>
       </Heading>
       <Text mt="3" fontWeight="medium">
         We are launching feature {feature} the site very soon. Please come back

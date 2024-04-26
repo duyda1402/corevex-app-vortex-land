@@ -1,14 +1,16 @@
 import { avatarDefault } from "@/commons/assets";
 import { ScreenNameEnum } from "@/commons/enum/screens";
-import { UserInfo } from "@/commons/types";
+import { NavigationCustomProps, UserInfo } from "@/commons/types";
 import IconBackpack from "@/components/icon-system/IconBackpack";
 import IconCalendarCheck from "@/components/icon-system/IconCalendarCheck";
 import IconCrown from "@/components/icon-system/IconCrown";
+
 import IconGem from "@/components/icon-system/IconGem";
 import IconHomeHeart from "@/components/icon-system/IconHomeHeart";
 import IconPeopleRoof from "@/components/icon-system/IconPeopleRoof";
 import IconRocketLunch from "@/components/icon-system/IconRocketLunch";
 import IconSearchHeart from "@/components/icon-system/IconSearchHeart";
+import ActionIcon from "@/components/ui/ActionIcon";
 import ParallaxHeaderScrollView from "@/components/ui/ParallaxHeaderScrollView";
 import MenuSetting from "@/components/users/MenuSetting";
 import PersonalController from "@/components/users/PersonalController";
@@ -16,6 +18,7 @@ import PersonalHero from "@/components/users/PersonalHero";
 import PersonalWallet from "@/components/users/PersonalWallet";
 import WrapFastImg from "@/components/wrapper/WrapFastImg";
 import { RootState } from "@/libs/store";
+import { useNavigation } from "@react-navigation/native";
 import { Avatar, Box, HStack, Text, useTheme, View, VStack } from "native-base";
 import React from "react";
 import { StatusBar, TouchableOpacity } from "react-native";
@@ -101,7 +104,7 @@ function MeScreen({}: Props) {
         wrapperStyle={{ backgroundColor: colors.white }}
         isHeaderFixed={true}
         headerFixedBackgroundColor={colors.gray[100]}
-        headerHeight={40}
+        headerHeight={44}
         parallaxHeight={IMG_HEIGHT}
         wrapperContentStyle={{
           borderTopLeftRadius: 24,
@@ -144,7 +147,7 @@ const HeaderCustom = ({
 }) => {
   const { colors } = useTheme();
   const insets = useSafeAreaInsets();
-
+  const navigation = useNavigation<NavigationCustomProps>();
   const headerAnimatedStyle = useAnimatedStyle(() => {
     return {
       opacity: !height
@@ -175,7 +178,7 @@ const HeaderCustom = ({
           flexDirection: "row",
           paddingLeft: 16,
           paddingRight: 16,
-          marginTop: insets.top,
+          marginTop: insets.top + 6,
           width: width,
         },
       ]}
@@ -202,11 +205,13 @@ const HeaderCustom = ({
             <Ionicons name="storefront-outline" size={24} />
           </Animated.Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => alert("Setting")}>
+        <ActionIcon
+          onPress={() => navigation.navigate(ScreenNameEnum.SettingAuthScreen)}
+        >
           <Animated.Text style={[iconColor]}>
             <Ionicons name="settings-outline" size={24} />
           </Animated.Text>
-        </TouchableOpacity>
+        </ActionIcon>
       </HStack>
     </View>
   );

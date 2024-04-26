@@ -23,3 +23,18 @@ export const apiGetMe = async (): Promise<UserInfo | null> => {
   );
   return response.data;
 };
+
+export const apiUpdateMe = async (
+  body: UserInfo
+): Promise<[boolean, string | null]> => {
+  let result: boolean = false;
+  const response = await instanceBE.put<any, ResponseAPI<null>>(
+    "/v1/user/update",
+    body
+  );
+  if (response.code === 200) {
+    return [true, null];
+  }
+
+  return [result, response.message];
+};

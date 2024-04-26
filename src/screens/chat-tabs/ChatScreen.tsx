@@ -4,6 +4,8 @@ import GiftsSheet from "@/components/gift/GiftsSheet";
 import MainAppView from "@/components/layouts/ViewMain";
 import WrapIcon from "@/components/wrapper/WrapIcon";
 
+import HeaderLayout from "@/components/layouts/HeaderLayout";
+import { getInfoChannel } from "@/utils";
 import { useNavigation } from "@react-navigation/native";
 import {
   Actionsheet,
@@ -27,7 +29,6 @@ import {
 } from "react-native";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import MessageList from "./MessageList";
-import { getInfoChannel } from "@/utils";
 
 type Props = {
   navigation: any;
@@ -90,23 +91,17 @@ function ChatScreen({ route }: Props) {
 
   return (
     <MainAppView isInsetsBottom={true}>
-      <HStack justifyContent="space-between" alignItems="center" py="3" px="5">
-        <FeatherIcon
-          name="chevron-left"
-          size={24}
-          color={colors.gray[600]}
-          onPress={() => navigation.goBack()}
-        />
-        <Text fontSize="md" fontWeight="semibold">
-          {infoChannel.name}
-        </Text>
-        <FeatherIcon
-          name="more-vertical"
-          size={24}
-          color={colors.gray[600]}
-          // onPress={() => navigation.goBack()}
-        />
-      </HStack>
+      <HeaderLayout
+        label={infoChannel.name}
+        iconRight={
+          <FeatherIcon
+            name="more-vertical"
+            size={24}
+            color={colors.gray[600]}
+            // onPress={() => navigation.goBack()}
+          />
+        }
+      />
       <ScrollView bg="gray.100">
         {!messages.length ? (
           <Center h="60">

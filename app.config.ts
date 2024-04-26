@@ -36,6 +36,13 @@ module.exports = ({ config }: ConfigContext): ExpoConfig => {
       "@react-native-firebase/app",
       "@react-native-firebase/auth",
       "@react-native-google-signin/google-signin",
+      [
+        "expo-image-picker",
+        {
+          photosPermission:
+            "The app accesses your photos to let you share them with your friends.",
+        },
+      ],
     ],
     extra: {
       eas: {

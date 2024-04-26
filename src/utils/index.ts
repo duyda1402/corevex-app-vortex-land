@@ -1,5 +1,9 @@
 import { ChannelType } from "@/commons/enum/channel";
 import {
+  countriesMockup,
+  countryStateMockup,
+} from "@/commons/mockups/countries";
+import {
   format,
   isToday,
   isThisWeek,
@@ -66,13 +70,15 @@ export function formatLargeNumber(num: number, sizeFixed = 1): string {
   return num.toString();
 }
 
-export function convertCountryState({
-  country,
-  state,
+export async function convertCountryState({
+  countryCode,
+  stateCode,
 }: {
-  country?: string | null;
-  state?: string | null;
+  countryCode?: string | null;
+  stateCode?: string | null;
 }) {
+  const country = countriesMockup.find((c) => c.code === countryCode)?.name;
+  const state = countryStateMockup.find((s) => s.code === stateCode)?.name;
   if (!country) {
     return "";
   } else if (!state) {

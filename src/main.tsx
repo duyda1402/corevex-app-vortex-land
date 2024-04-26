@@ -13,6 +13,7 @@ function App() {
     LogBox.ignoreLogs([
       "In React 18, SSRProvider is not necessary and is a noop. You can remove it from your app.",
       "ViewPropTypes will be removed from React Native",
+      "We can not support a function callback. See Github Issues for details",
     ]);
   }, []);
 

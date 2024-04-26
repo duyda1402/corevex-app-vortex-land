@@ -3,7 +3,7 @@ import { avatarDefault } from "@/commons/assets";
 import { UserInfo } from "@/commons/types";
 import { convertCountryState } from "@/utils";
 import { Avatar, HStack, Text, useTheme, VStack } from "native-base";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import IconFemale from "../icon-system/IconFemale";
 import IconMale from "../icon-system/IconMale";
 import IconVenusMars from "../icon-system/IconVenusMars";
@@ -14,6 +14,14 @@ type Props = {
 
 function PersonalHero({ me }: Props) {
   const { colors } = useTheme();
+  const [address, setAddress] = useState("");
+  useEffect(() => {
+    convertCountryState({
+      countryCode: me?.countryCode,
+      stateCode: me?.stateCode,
+    }).then((a) => setAddress(a));
+  }, []);
+
   return (
     <HStack
       style={{ borderTopLeftRadius: 24, borderTopRightRadius: 24 }}
@@ -35,7 +43,7 @@ function PersonalHero({ me }: Props) {
         </Text>
         <HStack space={1} alignItems="center">
           <Text color="gray.700" fontSize="xs">
-            ID: {me?.unionId}
+            UID: {me?.unionId}
           </Text>
           <Text color="gray.300" fontSize="xs">
             |
@@ -55,10 +63,7 @@ function PersonalHero({ me }: Props) {
             </Text>
           )}
           <Text color="gray.700" fontSize="xs">
-            {convertCountryState({
-              country: me?.countryCode,
-              state: me?.stateCode,
-            })}
+            {address}
           </Text>
         </HStack>
       </VStack>
